@@ -844,94 +844,152 @@ Analysis
                                                         <div class="vc_row wpb_row vc_inner vc_row-fluid"> -->
 
  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #000;
-      color: #fff;
-      text-align: center;
-    }
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #000;
+    color: #fff;
+    text-align: center;
+  }
 
-    .services-section {
-      padding: 50px 20px;
-    }
+  .services-section {
+    padding: 50px 20px;
+  }
 
-    .services-section h2 {
-      font-size: 40px;
-      margin-bottom: 15px;
-      letter-spacing: 2px;
-    }
+  .services-section h2 {
+    font-size: 40px;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+  }
 
-    .services-section p {
-      font-size: 16px;
-      line-height: 1.6;
-      max-width: 900px;
-      margin: 0 auto 40px;
-      color: #ccc;
-    }
+  .services-section p {
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto 40px;
+    color: #ccc;
+  }
 
+  .services-images {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  /* Service card container */
+  .service-card {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    height: 350px;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+    cursor: pointer;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+  }
+
+  .service-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Dark overlay to make text readable */
+  .service-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4); /* darken image */
+    transition: background 0.3s ease;
+  }
+
+  /* Text on image */
+  .service-text {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 2;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+  }
+
+  /* Hover animation */
+  .service-card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+  }
+
+  .service-card:hover::after {
+    background: rgba(0,0,0,0.6); /* darken more on hover */
+  }
+
+  @media (max-width: 768px) {
     .services-images {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
     }
-
-    .services-images img {
-      width: 100%;
-      max-width: 300px;   /* same width */
-      height: 350px;      /* fixed height */
-      object-fit: cover;  /* crop image but keep ratio */
-      border-radius: 5px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.6);
-      transition: transform 0.5s ease, box-shadow 0.5s ease;
-      cursor: pointer;
+    .service-card {
+      max-width: 100%;
+      height: 250px;
     }
+  }
+</style>
 
-    /* Hover Animation */
-    .services-images img:hover {
-      transform: scale(1.08);
-      box-shadow: 0 10px 25px rgba(255,255,255,0.3);
-    }
+<section class="services-section">
+  <h2 style=" color: #796254; ">SERVICES</h2>
+  <p>
+    Working across disciplines of architecture, interiors, furniture, lighting, 
+    product design, and landscaping, the dedicated team at the design house, led by the 
+    immaculately polished style sense of Aparna herself, conceive and execute synergistic, 
+    forward-thinking and visually striking projects.
+  </p>
 
-    @media (max-width: 768px) {
-      .services-images {
-        flex-direction: column;
-        align-items: center;
-      }
-      .services-images img {
-        max-width: 100%;
-        height: 250px;
-      }
-    }
-  </style>
-
-  <section class="services-section">
-    <h2 style="
-    color: white;
-">SERVICES</h2>
-    <p>
-      Working across disciplines of architecture, interiors, furniture, lighting, 
-      product design, and landscaping, the dedicated team at the design house, led by the 
-      immaculately polished style sense of Aparna herself, conceive and execute synergistic, 
-      forward-thinking and visually striking projects.
-    </p>
-
-    <div class="services-images">
+  <div class="services-images">
+    <div class="service-card">
       <img src="Tulip_Cam008.jpg" alt="Service 1">
-      <img src="services3.jpg" alt="Service 2">
-      <img src="services2.jpg" alt="Service 3">
-      <img src="healthcare.jpg" alt="Service 4">
-      <img src="kid.jpg" alt="Service 2">
-      <img src="arial.jpg" alt="Service 3">
-      <img src="veenet.jpg" alt="Service 1">
-      <img src="comm.jpg" alt="Service 2">
-      <img src="villa.jpg" alt="Service 3">
-            <!-- <img src="Tulip_Cam008.jpg" alt="Service 1">
-      <img src="services3.jpg" alt="Service 2">
-      <img src="services2.jpg" alt="Service 3"> -->
+      <div class="service-text">Residential</div>
     </div>
-  </section>
+    <div class="service-card">
+      <img src="services3.jpg" alt="Service 2">
+      <div class="service-text">Commercial</div>
+    </div>
+    <div class="service-card">
+      <img src="services2.jpg" alt="Service 3">
+      <div class="service-text">Hospitality</div>
+    </div>
+    <div class="service-card">
+      <img src="healthcare.jpg" alt="Service 4">
+      <div class="service-text">Healthcare</div>
+    </div>
+    <div class="service-card">
+      <img src="kid.jpg" alt="Service 5">
+      <div class="service-text">Educational</div>
+    </div>
+    <div class="service-card">
+      <img src="arial.jpg" alt="Service 6">
+      <div class="service-text">Corporate</div>
+    </div>
+    <div class="service-card">
+      <img src="veenet.jpg" alt="Service 7">
+      <div class="service-text">Retail</div>
+    </div>
+    <div class="service-card">
+      <img src="comm.jpg" alt="Service 8">
+      <div class="service-text">Community</div>
+    </div>
+    <div class="service-card">
+      <img src="villa.jpg" alt="Service 9">
+      <div class="service-text">Villas</div>
+    </div>
+  </div>
+</section>
+
 
 
 
