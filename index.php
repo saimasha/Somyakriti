@@ -1,0 +1,1791 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <title>Somyakriti &#8211; Architecture</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <style type="text/css">
+        @font-face {
+         font-family: 'Heebo';
+         font-style: normal;
+         font-weight: 300;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/heebo/v26/NGSpv5_NC0k9P_v6ZUCbLRAHxK1E1yyse0mj.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Heebo';
+         font-style: normal;
+         font-weight: 400;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/heebo/v26/NGSpv5_NC0k9P_v6ZUCbLRAHxK1EiSyse0mj.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Heebo';
+         font-style: normal;
+         font-weight: 500;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/heebo/v26/NGSpv5_NC0k9P_v6ZUCbLRAHxK1Euyyse0mj.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Heebo';
+         font-style: normal;
+         font-weight: 600;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/heebo/v26/NGSpv5_NC0k9P_v6ZUCbLRAHxK1EVyuse0mj.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Heebo';
+         font-style: normal;
+         font-weight: 700;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/heebo/v26/NGSpv5_NC0k9P_v6ZUCbLRAHxK1Ebiuse0mj.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Muli';
+         font-style: normal;
+         font-weight: 300;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/muli/v29/7Aulp_0qiz-aVz7u3PJLcUMYOFmQkEk50e0.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Muli';
+         font-style: normal;
+         font-weight: 400;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/muli/v29/7Aulp_0qiz-aVz7u3PJLcUMYOFnOkEk50e0.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Muli';
+         font-style: normal;
+         font-weight: 500;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/muli/v29/7Aulp_0qiz-aVz7u3PJLcUMYOFn8kEk50e0.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Muli';
+         font-style: normal;
+         font-weight: 600;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/muli/v29/7Aulp_0qiz-aVz7u3PJLcUMYOFkQl0k50e0.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Muli';
+         font-style: normal;
+         font-weight: 700;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/muli/v29/7Aulp_0qiz-aVz7u3PJLcUMYOFkpl0k50e0.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Open Sans';
+         font-style: normal;
+         font-weight: 400;
+         font-stretch: normal;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4uaVc.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Open Sans';
+         font-style: normal;
+         font-weight: 500;
+         font-stretch: normal;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjr0B4uaVc.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Open Sans';
+         font-style: normal;
+         font-weight: 600;
+         font-stretch: normal;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsgH1x4uaVc.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Open Sans';
+         font-style: normal;
+         font-weight: 700;
+         font-stretch: normal;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsg-1x4uaVc.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Playfair Display';
+         font-style: italic;
+         font-weight: 400;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/playfairdisplay/v37/nuFRD-vYSZviVYUb_rj3ij__anPXDTnCjmHKM4nYO7KN_qiTXt_A_A.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Playfair Display';
+         font-style: italic;
+         font-weight: 700;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/playfairdisplay/v37/nuFRD-vYSZviVYUb_rj3ij__anPXDTnCjmHKM4nYO7KN_k-UXt_A_A.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Playfair Display';
+         font-style: normal;
+         font-weight: 400;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/playfairdisplay/v37/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDZbtY.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Playfair Display';
+         font-style: normal;
+         font-weight: 700;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/playfairdisplay/v37/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKeiunDZbtY.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Poppins';
+         font-style: normal;
+         font-weight: 300;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/poppins/v22/pxiByp8kv8JHgFVrLDz8Z1JlEA.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Poppins';
+         font-style: normal;
+         font-weight: 400;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/poppins/v22/pxiEyp8kv8JHgFVrJJnedw.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Poppins';
+         font-style: normal;
+         font-weight: 500;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/poppins/v22/pxiByp8kv8JHgFVrLGT9Z1JlEA.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Poppins';
+         font-style: normal;
+         font-weight: 600;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/poppins/v22/pxiByp8kv8JHgFVrLEj6Z1JlEA.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Poppins';
+         font-style: normal;
+         font-weight: 700;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/poppins/v22/pxiByp8kv8JHgFVrLCz7Z1JlEA.ttf) format('truetype');
+        }
+        @font-face {
+         font-family: 'Roboto';
+         font-style: normal;
+         font-weight: 400;
+         font-stretch: normal;
+         font-display: swap;
+         src: url(https://fonts.gstatic.com/s/roboto/v47/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbVmaiA8.ttf) format('truetype');
+        }
+    </style>
+    <meta name='robots' content='max-image-preview:large' />
+    <style>
+        img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }
+    </style>
+    <link rel='dns-prefetch' href='//fonts.googleapis.com' />
+    <link rel="alternate" type="application/rss+xml" title="Archio &raquo; Feed" href="https://demo.casethemes.net/archio/feed/" />
+    <link rel="alternate" type="application/rss+xml" title="Archio &raquo; Comments Feed" href="https://demo.casethemes.net/archio/comments/feed/" />
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16.0.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16.0.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/demo.casethemes.net\/archio\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.3"}};
+        /*! This file is auto-generated */
+        !function(s,n){var o,i,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),a=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===a[t]})}function u(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);for(var n=e.getImageData(16,16,1,1),a=0;a<n.data.length;a++)if(0!==n.data[a])return!1;return!0}function f(e,t,n,a){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!a(e,"\ud83e\udedf")}return!1}function g(e,t,n,a){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):s.createElement("canvas"),o=r.getContext("2d",{willReadFrequently:!0}),i=(o.textBaseline="top",o.font="600 32px Arial",{});return e.forEach(function(e){i[e]=t(o,e,n,a)}),i}function t(e){var t=s.createElement("script");t.src=e,t.defer=!0,s.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",i=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){s.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+g.toString()+"("+[JSON.stringify(i),f.toString(),p.toString(),u.toString()].join(",")+"));",a=new Blob([e],{type:"text/javascript"}),r=new Worker(URL.createObjectURL(a),{name:"wpTestEmojiSupports"});return void(r.onmessage=function(e){c(n=e.data),r.terminate(),t(n)})}catch(e){}c(n=g(i,f,p,u))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+        /* ]]> */
+    </script>
+    <style id='wp-emoji-styles-inline-css' type='text/css'>
+        img.wp-smiley, img.emoji {
+         display: inline !important;
+         border: none !important;
+         box-shadow: none !important;
+         height: 1em !important;
+         width: 1em !important;
+         margin: 0 0.07em !important;
+         vertical-align: -0.1em !important;
+         background: none !important;
+         padding: 0 !important;
+         }
+    </style>
+    <link rel='stylesheet' id='wp-block-library-css' href='https://demo.casethemes.net/archio/wp-includes/css/dist/block-library/style.min.css?ver=6.8.3' type='text/css' media='all' />
+    <style id='classic-theme-styles-inline-css' type='text/css'>
+        /*! This file is auto-generated */
+        .wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+    </style>
+    <link rel='stylesheet' id='wc-blocks-vendors-style-css' href='https://demo.casethemes.net/archio/wp-content/plugins/woocommerce/packages/woocommerce-blocks/build/wc-blocks-vendors-style.min.css?ver=6.9.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='wc-blocks-style-css' href='https://demo.casethemes.net/archio/wp-content/plugins/woocommerce/packages/woocommerce-blocks/build/wc-blocks-style.min.css?ver=6.9.0' type='text/css' media='all' />
+    <style id='global-styles-inline-css' type='text/css'>
+        :root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+        :where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+        :where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+        :root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+    </style>
+    <link rel='stylesheet' id='contact-form-7-css' href='https://demo.casethemes.net/archio/wp-content/plugins/contact-form-7/includes/css/contact-form-7.min.css?ver=5.5.6' type='text/css' media='all' />
+    <link rel='stylesheet' id='cms-plugin-stylesheet-css' href='https://demo.casethemes.net/archio/wp-content/plugins/ctcore/assets/css/cms-plugin-stylesheet.min.css?ver=6.8.3' type='text/css' media='all' />
+    <link rel='stylesheet' id='owl-carousel-css' href='https://demo.casethemes.net/archio/wp-content/plugins/ctcore/assets/css/owl.carousel.min.css?ver=6.8.3' type='text/css' media='all' />
+    <link rel='stylesheet' id='purchase-link-css-css' href='https://demo.casethemes.net/archio/wp-content/plugins/envato-purchase-link//css/purchase-link-css.min.css?ver=1.0.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='rs-plugin-settings-css' href='https://demo.casethemes.net/archio/wp-content/plugins/revslider/public/assets/css/rs-plugin-settings.min.css?ver=6.3.6' type='text/css' media='all' />
+    <style id='rs-plugin-settings-inline-css' type='text/css'>
+        #rs-demo-id {}
+    </style>
+    <link rel='stylesheet' id='woocommerce-layout-css' href='https://demo.casethemes.net/archio/wp-content/plugins/woocommerce/assets/css/woocommerce-layout.min.css?ver=6.3.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='woocommerce-smallscreen-css' href='https://demo.casethemes.net/archio/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.min.css?ver=6.3.1' type='text/css' media='only screen and (max-width: 768px)' />
+    <link rel='stylesheet' id='woocommerce-general-css' href='https://demo.casethemes.net/archio/wp-content/plugins/woocommerce/assets/css/woocommerce-general.min.css?ver=6.3.1' type='text/css' media='all' />
+    <style id='woocommerce-inline-inline-css' type='text/css'>
+        .woocommerce form .form-row .required { visibility: visible; }
+    </style>
+    <link rel='stylesheet' id='ppress-frontend-css' href='https://demo.casethemes.net/archio/wp-content/plugins/wp-user-avatar/assets/css/frontend.min.css?ver=3.2.9' type='text/css' media='all' />
+    <link rel='stylesheet' id='ppress-flatpickr-css' href='https://demo.casethemes.net/archio/wp-content/plugins/wp-user-avatar/assets/flatpickr/flatpickr.min.css?ver=3.2.9' type='text/css' media='all' />
+    <link rel='stylesheet' id='ppress-select2-css' href='https://demo.casethemes.net/archio/wp-content/plugins/wp-user-avatar/assets/select2/select2.min.css?ver=6.8.3' type='text/css' media='all' />
+    <link rel='stylesheet' id='bootstrap-css' href='https://demo.casethemes.net/archio/wp-content/themes/archio/assets/css/bootstrap.min.css?ver=4.0.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='font-awesome-css' href='https://demo.casethemes.net/archio/wp-content/themes/archio/assets/css/font-awesome.min.css?ver=4.7.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='font-awesome-v5-css' href='https://demo.casethemes.net/archio/wp-content/themes/archio/assets/css/font-awesome5.min.css?ver=5.7.2' type='text/css' media='all' />
+    <link rel='stylesheet' id='font-awesome-shims-css' href='https://demo.casethemes.net/archio/wp-content/themes/archio/assets/css/font-awesome5-shims.min.css?ver=5.7.2' type='text/css' media='all' />
+    <link rel='stylesheet' id='font-material-icon-css' href='https://demo.casethemes.net/archio/wp-content/themes/archio/assets/css/material-design-iconic-font.min.css?ver=2.2.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='flaticon-css' href='https://demo.casethemes.net/archio/wp-content/themes/archio/assets/css/flaticon.min.css?ver=1.0.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='themify-icons-css' href='https://demo.casethemes.net/archio/wp-content/themes/archio/assets/css/themify-icons.min.css?ver=1.0.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='font-etline-icon-css' href='https://demo.casethemes.net/archio/wp-content/themes/archio/assets/css/font-etline-icon.min.css?ver=1.0.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='magnific-popup-css' href='https://demo.casethemes.net/archio/wp-content/themes/archio/assets/css/magnific-popup.min.css?ver=1.0.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='archio-theme-css' href='https://demo.casethemes.net/archio/wp-content/themes/archio/assets/css/archio-theme.min.css?ver=1.1.1' type='text/css' media='all' />
+    <style id='archio-theme-inline-css' type='text/css'>
+        @media screen and (min-width: 992px) {
+         }
+         @media screen and (max-width: 991px) {
+         }
+         @media screen and (min-width: 992px) {
+         }
+    </style>
+    <link rel='stylesheet' id='archio-menu-css' href='https://demo.casethemes.net/archio/wp-content/themes/archio/assets/css/archio-menu.min.css?ver=1.1.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='archio-style-css' href='https://demo.casethemes.net/archio/wp-content/themes/archio/archio-style.min.css?ver=6.8.3' type='text/css' media='all' />
+    <link rel='stylesheet' id='newsletter-css' href='https://demo.casethemes.net/archio/wp-content/plugins/newsletter/newsletter.min.css?ver=7.4.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='js_composer_front-css' href='https://demo.casethemes.net/archio/wp-content/plugins/js_composer/assets/css/js_composer.min.css?ver=6.8.0' type='text/css' media='all' />
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/plugins/revslider/public/assets/js/rbtools.min.js?ver=6.3.6" id="tp-tools-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/plugins/revslider/public/assets/js/rs6.min.js?ver=6.3.6" id="revmin-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js?ver=2.7.0-wc.6.3.1" id="jquery-blockui-js"></script>
+    <script type="text/javascript" id="wc-add-to-cart-js-extra">
+        /* <![CDATA[ */
+        var wc_add_to_cart_params = {"ajax_url":"\/archio\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/archio\/?wc-ajax=%%endpoint%%","i18n_view_cart":"View cart","cart_url":"https:\/\/demo.casethemes.net\/archio\/cart\/","is_cart":"","cart_redirect_after_add":"no"};
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js?ver=6.3.1" id="wc-add-to-cart-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/plugins/wp-user-avatar/assets/flatpickr/flatpickr.min.js?ver=6.8.3" id="ppress-flatpickr-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/plugins/wp-user-avatar/assets/select2/select2.min.js?ver=6.8.3" id="ppress-select2-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/uploads/siteground-optimizer-assets/vc_woocommerce-add-to-cart-js.min.js?ver=6.8.0" id="vc_woocommerce-add-to-cart-js-js"></script>
+    <link rel="https://api.w.org/" href="https://demo.casethemes.net/archio/wp-json/" />
+    <link rel="alternate" title="JSON" type="application/json" href="https://demo.casethemes.net/archio/wp-json/wp/v2/pages/8" />
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://demo.casethemes.net/archio/xmlrpc.php?rsd" />
+    <meta name="generator" content="WordPress 6.8.3" />
+    <meta name="generator" content="WooCommerce 6.3.1" />
+    <link rel="canonical" href="https://demo.casethemes.net/archio/" />
+    <link rel='shortlink' href='https://demo.casethemes.net/archio/' />
+    <link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://demo.casethemes.net/archio/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdemo.casethemes.net%2Farchio%2F" />
+    <link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://demo.casethemes.net/archio/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdemo.casethemes.net%2Farchio%2F&#038;format=xml" />
+    <meta name="generator" content="Redux 4.4.18" />
+    <noscript>
+        <style>
+            .woocommerce-product-gallery{ opacity: 1 !important; }
+        </style>
+    </noscript>
+    <meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress." />
+    <meta name="generator" content="Powered by Slider Revolution 6.3.6 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface." />
+    <script type="text/javascript">
+        function setREVStartSize(e){
+         //window.requestAnimationFrame(function() { 
+         window.RSIW = window.RSIW===undefined ? window.innerWidth : window.RSIW; 
+         window.RSIH = window.RSIH===undefined ? window.innerHeight : window.RSIH; 
+         try { 
+         var pw = document.getElementById(e.c).parentNode.offsetWidth,
+         newh;
+         pw = pw===0 || isNaN(pw) ? window.RSIW : pw;
+         e.tabw = e.tabw===undefined ? 0 : parseInt(e.tabw);
+         e.thumbw = e.thumbw===undefined ? 0 : parseInt(e.thumbw);
+         e.tabh = e.tabh===undefined ? 0 : parseInt(e.tabh);
+         e.thumbh = e.thumbh===undefined ? 0 : parseInt(e.thumbh);
+         e.tabhide = e.tabhide===undefined ? 0 : parseInt(e.tabhide);
+         e.thumbhide = e.thumbhide===undefined ? 0 : parseInt(e.thumbhide);
+         e.mh = e.mh===undefined || e.mh=="" || e.mh==="auto" ? 0 : parseInt(e.mh,0); 
+         if(e.layout==="fullscreen" || e.l==="fullscreen") 
+         newh = Math.max(e.mh,window.RSIH); 
+         else{ 
+         e.gw = Array.isArray(e.gw) ? e.gw : [e.gw];
+         for (var i in e.rl) if (e.gw[i]===undefined || e.gw[i]===0) e.gw[i] = e.gw[i-1]; 
+         e.gh = e.el===undefined || e.el==="" || (Array.isArray(e.el) && e.el.length==0)? e.gh : e.el;
+         e.gh = Array.isArray(e.gh) ? e.gh : [e.gh];
+         for (var i in e.rl) if (e.gh[i]===undefined || e.gh[i]===0) e.gh[i] = e.gh[i-1]; 
+         var nl = new Array(e.rl.length),
+         ix = 0, 
+         sl; 
+         e.tabw = e.tabhide>=pw ? 0 : e.tabw;
+         e.thumbw = e.thumbhide>=pw ? 0 : e.thumbw;
+         e.tabh = e.tabhide>=pw ? 0 : e.tabh;
+         e.thumbh = e.thumbhide>=pw ? 0 : e.thumbh; 
+         for (var i in e.rl) nl[i] = e.rl[i]<window.RSIW ? 0 : e.rl[i];
+         sl = nl[0]; 
+         for (var i in nl) if (sl>nl[i] && nl[i]>0) { sl = nl[i]; ix=i;} 
+         var m = pw>(e.gw[ix]+e.tabw+e.thumbw) ? 1 : (pw-(e.tabw+e.thumbw)) / (e.gw[ix]); 
+         newh =  (e.gh[ix] * m) + (e.tabh + e.thumbh);
+         } 
+         if(window.rs_init_css===undefined) window.rs_init_css = document.head.appendChild(document.createElement("style")); 
+         document.getElementById(e.c).height = newh+"px";
+         window.rs_init_css.innerHTML += "#"+e.c+"_wrapper { height: "+newh+"px }"; 
+         } catch(e){
+         console.log("Failure at Presize of Slider:" + e)
+         } 
+         //});
+         };
+    </script>
+    <style id="cms_theme_options-dynamic-css" title="dynamic-css" class="redux-options-output">
+        a{color:#c5984f;}a:hover{color:#9b6f45;}a:active{color:#9b6f45;}
+    </style>
+    <style id="cms-page-dynamic-css" data-type="redux-output-css">#content{padding-top:0px;padding-bottom:0px;}</style>
+    <style type="text/css" data-type="vc_custom-css">
+        @media screen and (min-width: 768px) {
+         .ct-client-carousel .ct-client-item a {
+         display: inherit;
+         }
+         .ct-client-carousel .owl-nav {
+         margin-top: 130px;
+         text-align: right;
+         }
+        }
+    </style>
+    <style type="text/css" data-type="vc_shortcodes-custom-css">
+        .vc_custom_1552925396318{padding-top: 110px !important;padding-bottom: 110px !important;
+        background-image: url(https://demo.casethemes.net/archio/wp-content/uploads/2019/03/bg-text.png?id=1026) !important;
+        background-position: center !important;background-repeat: no-repeat !important;background-size: cover !important;}.vc_custom_1553186234397{padding-top: 78px !important;padding-bottom: 108px !important;background: #272727 url(https://demo.casethemes.net/archio/wp-content/uploads/2019/03/bg-gradient1.jpg?id=1032) !important;background-position: center !important;background-repeat: no-repeat !important;background-size: cover !important;}.vc_custom_1552920422705{background-color: #000000 !important;}.vc_custom_1553652443041{padding-top: 80px !important;padding-bottom: 40px !important;background-position: center;background-repeat: no-repeat !important;background-size: cover !important;}.vc_custom_1552920422705{background-color: #000000 !important;}.vc_custom_1552813034346{padding-top: 0px !important;}.vc_custom_1552902458867{padding-top: 0px !important;padding-left: 35px !important;}.vc_custom_1552902640438{margin-bottom: 0px !important;padding-top: 42px !important;}.vc_custom_1553185907162{padding-top: 0px !important;}.vc_custom_1553218647304{padding-top: 30px !important;}.vc_custom_1553218656444{padding-top: 30px !important;}.vc_custom_1553218664032{padding-top: 30px !important;}.vc_custom_1552709233494{padding-top: 0px !important;}.vc_custom_1552920415316{padding-top: 130px !important;}.vc_custom_1552924507632{padding-top: 0px !important;padding-right: 25px !important;}.vc_custom_1552924513372{padding-top: 0px !important;padding-left: 93px !important;}.vc_custom_1552923102093{margin-bottom: 0px !important;padding-top: 0px !important;}.vc_custom_1552923835415{padding-top: 65px !important;}.vc_custom_1552923825582{padding-top: 65px !important;}.vc_custom_1552923845488{padding-top: 65px !important;}.vc_custom_1552923854215{padding-top: 65px !important;}.vc_custom_1553218849632{padding-top: 120px !important;}.vc_custom_1553225917830{padding-top: 102px !important;}.vc_custom_1553223877435{padding-top: 0px !important;}.vc_custom_1553592012441{padding-top: 0px !important;padding-left: 25px !important;}.vc_custom_1553591829233{margin-bottom: 0px !important;padding-top: 0px !important;}.vc_custom_1553227144918{padding-top: 93px !important;padding-bottom: 20px !important;}.vc_custom_1553226190183{padding-top: 0px !important;padding-bottom: 75px !important;}
+    </style>
+    <noscript>
+        <style>
+            .wpb_animate_when_almost_visible { opacity: 1; }
+        </style>
+    </noscript>
+</head>
+
+<body class="home wp-singular page-template-default page page-id-8 wp-theme-archio theme-archio woocommerce-no-js  reduxon body-default-font heading-default-font visual-composer wpb-js-composer js-comp-ver-6.8.0 vc_responsive">
+    <div id="page" class="site">
+        <div id="ct-loadding" class="ct-loader style3">
+            <div class="ct-spinner3">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+        </div>
+        <header id="masthead">
+            <div id="header-wrap" class="header-layout1">
+                <div id="header-main" class="header-main">
+                    <div class="container">
+                        <div class="row">
+                            <div class="header-menu-toggle">
+                                <div class="menu-toggle-icon"> <span class="menu-toggle-line"></span> <span class="menu-toggle-line"></span> <span class="menu-toggle-line"></span> <span class="menu-toggle-line"></span></div>
+                            </div>
+                            <div class="header-navigation">
+                                <nav class="main-navigation">
+                                    <div class="main-navigation-inner">
+                                        <div class="menu-mobile-close"><i class="zmdi zmdi-close"></i></div>
+                                        <div class="header-mobile-search">
+                                            <form role="search" method="get" action="https://demo.casethemes.net/archio/">
+                                                <input type="text" placeholder="Search..." name="s" class="search-field" />
+                                                <button type="submit" class="search-submit"><i class="fa fa-search"></i></button>
+                                            </form>
+                                        </div>
+                                        <ul id="mastmenu" class="primary-menu clearfix">
+                                            <li id="menu-item-47" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-8 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-47"><a href="https://demo.casethemes.net/archio/" aria-current="page" class="no-one-page">Home</a>
+                                                <ul class="sub-menu">
+                                                    <li id="menu-item-51" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-8 current_page_item menu-item-51"><a href="https://demo.casethemes.net/archio/" aria-current="page" class="no-one-page">Home One</a></li>
+                                                    <li id="menu-item-48" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-48"><a href="https://demo.casethemes.net/archio/home-2/" class="no-one-page">Home Two</a></li>
+                                                    <li id="menu-item-49" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-49"><a href="https://demo.casethemes.net/archio/home-3/" class="no-one-page">Home Three</a></li>
+                                                </ul>
+                                            </li>
+                                            <li id="menu-item-38" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-38"><a href="https://demo.casethemes.net/archio/about-us/" class="no-one-page">About us</a></li>
+                                            <li id="menu-item-928" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-928"><a href="#" class="no-one-page">Project</a>
+                                                <ul class="sub-menu">
+                                                    <li id="menu-item-50" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="https://demo.casethemes.net/archio/project/" class="no-one-page">Project List</a></li>
+                                                    <li id="menu-item-950" class="menu-item menu-item-type-post_type menu-item-object-portfolio menu-item-950"><a href="https://demo.casethemes.net/archio/portfolio/mendella-exterior/" class="no-one-page">Project Details</a></li>
+                                                </ul>
+                                            </li>
+                                            <li id="menu-item-55" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-55"><a href="#" class="no-one-page">Pages</a>
+                                                <ul class="sub-menu">
+                                                    <li id="menu-item-381" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-381"><a href="https://demo.casethemes.net/archio/our-team/" class="no-one-page">Our Team</a></li>
+                                                    <li id="menu-item-380" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-380"><a href="https://demo.casethemes.net/archio/team-details/" class="no-one-page">Team Details</a></li>
+                                                    <li id="menu-item-379" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-379"><a href="https://demo.casethemes.net/archio/testimonials/" class="no-one-page">Testimonials</a></li>
+                                                    <li id="menu-item-378" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-378"><a href="https://demo.casethemes.net/archio/faqs/" class="no-one-page">Faqs</a></li>
+                                                    <li id="menu-item-365" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-365"><a href="https://demo.casethemes.net/archio/404-page" class="no-one-page">404 Page</a></li>
+                                                    <li id="menu-item-382" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-382"><a href="#" class="no-one-page">Shop</a>
+                                                        <ul class="sub-menu">
+                                                            <li id="menu-item-383" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-383"><a href="https://demo.casethemes.net/archio/shop/?sidebar-shop=no-sidebar" class="no-one-page">Shop Full Width</a></li>
+                                                            <li id="menu-item-384" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-384"><a href="https://demo.casethemes.net/archio/shop/?sidebar-shop=left" class="no-one-page">Shop Sidebar Left</a></li>
+                                                            <li id="menu-item-385" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-385"><a href="https://demo.casethemes.net/archio/shop/?sidebar-shop=right" class="no-one-page">Shop Sidebar Right</a></li>
+                                                            <li id="menu-item-926" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-926"><a href="https://demo.casethemes.net/archio/product/aroma-diffuser-jasmine/" class="no-one-page">Product Details</a></li>
+                                                            <li id="menu-item-387" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-387"><a href="https://demo.casethemes.net/archio/cart/" class="no-one-page">Cart</a></li>
+                                                            <li id="menu-item-386" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-386"><a href="https://demo.casethemes.net/archio/checkout/" class="no-one-page">Checkout</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li id="menu-item-52" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-52"><a href="#" class="no-one-page">Blog</a>
+                                                <ul class="sub-menu">
+                                                    <li id="menu-item-41" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-41"><a href="https://demo.casethemes.net/archio/blog-grid-3-columns/" class="no-one-page">Blog Grid</a>
+                                                        <ul class="sub-menu">
+                                                            <li id="menu-item-39" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-39"><a href="https://demo.casethemes.net/archio/blog-grid-2-columns-sidebar-left/" class="no-one-page">2 Columns + Sidebar Left</a></li>
+                                                            <li id="menu-item-40" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-40"><a href="https://demo.casethemes.net/archio/blog-grid-2-columns-sidebar-right/" class="no-one-page">2 Columns + Sidebar Right</a></li>
+                                                            <li id="menu-item-53" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-53"><a href="https://demo.casethemes.net/archio/blog-grid-3-columns/" class="no-one-page">3 Columns</a></li>
+                                                            <li id="menu-item-42" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42"><a href="https://demo.casethemes.net/archio/blog-grid-4-columns-wide/" class="no-one-page">4 Columns Wide</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li id="menu-item-54" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-54"><a href="https://demo.casethemes.net/archio/blog-standard-sidebar-right/" class="no-one-page">Blog Standard</a>
+                                                        <ul class="sub-menu">
+                                                            <li id="menu-item-44" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-44"><a href="https://demo.casethemes.net/archio/blog-standard-sidebar-left/" class="no-one-page">Sidebar Left</a></li>
+                                                            <li id="menu-item-43" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-43"><a href="https://demo.casethemes.net/archio/blog-standard-full-width/" class="no-one-page">Sidebar Without</a></li>
+                                                            <li id="menu-item-45" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-45"><a href="https://demo.casethemes.net/archio/blog-standard-sidebar-right/" class="no-one-page">Sidebar Right</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li id="menu-item-415" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-415"><a href="#" class="no-one-page">Blog Details</a>
+                                                        <ul class="sub-menu">
+                                                            <li id="menu-item-416" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-416"><a href="https://demo.casethemes.net/archio/job-opportunity-in-architecture/" class="no-one-page">Sidebar Left</a></li>
+                                                            <li id="menu-item-417" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-417"><a href="https://demo.casethemes.net/archio/we-want-to-hire-someone-for-job/" class="no-one-page">Sidebar Without</a></li>
+                                                            <li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-418"><a href="https://demo.casethemes.net/archio/cops-kill-bull-attacking-own/" class="no-one-page">Sidebar Right</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li id="menu-item-1171" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1171"><a href="#" class="no-one-page">Contact</a>
+                                                <ul class="sub-menu">
+                                                    <li id="menu-item-1198" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1198"><a href="https://demo.casethemes.net/archio/contact-one/" class="no-one-page">Contact One</a></li>
+                                                    <li id="menu-item-1199" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1199"><a href="https://demo.casethemes.net/archio/contact-two/" class="no-one-page">Contact Two</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <div class="header-branding">
+                                <a class="logo-dark" href="https://demo.casethemes.net/archio/" title="Archio" rel="home">Somyakriti</a>
+                                <a class="logo-mobile" href="https://demo.casethemes.net/archio/" title="Archio" rel="home">Somyakriti</a>
+                            </div>
+                            <div class="menu-mobile-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div id="content" class="site-content">
+            <div class="content-inner">
+                <div class="container content-container">
+                    <div class="row content-row">
+                        <div id="primary" class="content-area content-full-width col-12">
+                            <main id="main" class="site-main">
+                                <article id="post-8" class="post-8 page type-page status-publish hentry">
+                                    <div class="entry-content clearfix">
+                                        <div class="vc_row wpb_row vc_row-fluid bg-image-ps-inherit">
+                                            <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                <div class="vc_column-inner">
+                                                    <div class="wpb_wrapper">
+                                                        <!-- START Home1 REVOLUTION SLIDER 6.3.6 -->
+                                                        <p class="rs-p-wp-fix"></p>
+                                                        <rs-module-wrap id="rev_slider_1_1_wrapper" data-source="gallery" style="background:transparent;padding:0;margin:0px auto;margin-top:0;margin-bottom:0;">
+                                                            <rs-module id="rev_slider_1_1" style="" data-version="6.3.6">
+                                                                <rs-slides>
+                                                                    <rs-slide data-key="rs-6" data-title="Slide" data-anim="ei:d;eo:d;s:d;r:default;t:slidingoverlayhorizontal;sl:d;">
+                                                                        <img decoding="async" src="Tulip_Cam011.jpg" title="Home" data-parallax="1" class="rev-slidebg" data-no-retina>
+                                                                        <!--
+ -->
+                                                                        <rs-group id="slider-1-slide-6-layer-1" data-type="group" data-xy="xo:15px;y:m;yo:40px,0,0,0;" data-text="l:22;a:inherit;" data-dim="w:1170px,680px,580px,450px;h:425px,425px,367px,308px;"
+                                                                        data-rsp_bd="off" data-frame_1="st:300;sp:600;sR:300;" data-frame_999="o:0;st:w;sp:600;sR:8100;sA:9000;" style="z-index:8;">
+                                                                            <!--
+ -->
+                                                                            <rs-layer id="slider-1-slide-6-layer-2" data-type="text" data-xy="yo:-8px;" data-text="s:14,14,14,13;l:22;ls:5px;fw:600;a:inherit;" data-rsp_o="off" data-rsp_bd="off" data-frame_0="o:1;"
+                                                                            data-frame_0_chars="d:10;x:200px;o:0;skX:-85px;" data-frame_1="e:easeOutCirc;st:900;sp:1500;sR:600;" data-frame_1_chars="d:10;" data-frame_999="y:-50px;o:0;e:easeOutCirc;st:w;sp:600;sR:5000;"
+                                                                            style="z-index:9;font-family:Poppins;">Discover your dream </rs-layer>
+                                                                            <!--
+ -->
+                                                                            <rs-layer id="slider-1-slide-6-layer-3" data-type="text" data-xy="yo:40px,40px,32px,32px;" data-text="s:80,80,55,32;l:76,76,60,36;fw:700;a:inherit;" data-rsp_o="off" data-rsp_bd="off"
+                                                                            data-frame_0="y:-100%;o:1;" data-frame_0_mask="u:t;" data-frame_1="e:easeOutCirc;st:1900;sp:1200;sR:1600;" data-frame_1_mask="u:t;" data-frame_999="o:0;e:easeOutCirc;st:w;sp:600;sR:5900;"
+                                                                            style="z-index:10;font-family:Poppins;">With <cite>the</cite> Touch
+                                                                                <br/> <cite>of</cite> Somyakriti<cite>.</cite> </rs-layer>
+                                                                            <!--
+ -->
+                                                                            <rs-layer id="slider-1-slide-6-layer-4" data-type="text" data-xy="yo:214px,214px,169px,-9999px;" data-text="s:16,16,16,12;l:26,26,26,22;a:inherit;" data-rsp_o="off" data-rsp_bd="off"
+                                                                            data-frame_0="y:100%;" data-frame_0_mask="u:t;y:100%;" data-frame_1="e:easeOutCirc;st:2400;sp:1200;sR:2100;" data-frame_1_mask="u:t;" data-frame_999="o:0;e:easeOutCirc;st:w;sp:600;sR:5400;"
+                                                                            style="z-index:11;font-family:Muli;">Delivering both full construction logistics and self-delivered
+                                                                                <br/> preliminary solutions </rs-layer>
+                                                                            <!--
+ -->
+                                                                            <rs-layer id="slider-1-slide-6-layer-5" data-type="text" data-xy="yo:304px,304px,255px,121px;" data-text="s:15;l:15;fw:600;a:inherit;" data-actions='o:click;a:simplelink;target:_self;url:#;'
+                                                                            data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:100%;" data-frame_0_mask="u:t;y:100%;" data-frame_1="e:easeOutCirc;st:2700;sp:1200;sR:2400;" data-frame_1_mask="u:t;" data-frame_999="y:50px;o:0;e:easeOutCirc;st:w;sp:600;sR:5100;"
+                                                                            style="z-index:12;font-family:Muli;cursor:pointer;"><span class="btn-line"><span>View more</span><i class="fa fa-long-arrow-right"></i></span>
+                                                                            </rs-layer>
+                                                                            <!--
+ -->
+                                                                            <rs-layer id="slider-1-slide-6-layer-7" data-type="text" data-xy="y:b;" data-text="l:22;a:inherit;" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:100%;" data-frame_0_mask="u:t;y:100%;"
+                                                                            data-frame_1="e:easeOutCirc;st:3000;sp:1200;sR:2700;" data-frame_1_mask="u:t;" data-frame_999="o:0;e:easeOutCirc;st:w;sp:600;sR:4800;" style="z-index:13;font-family:Open Sans;">
+                                                                                <div class="slider-button slider-navigation">
+                                                                                    <div class="slider-button1 nav-prev"><i class="fa fa-angle-left"></i></div>
+                                                                                    <div class="slider-button2 nav-next active"><i class="fa fa-angle-right"></i></div>
+                                                                                </div>
+                                                                            </rs-layer>
+                                                                            <!--
+ -->
+                                                                            <rs-layer id="slider-1-slide-6-layer-9" data-type="text" data-xy="x:r,l,l,l;xo:0,120px,120px,0;y:b;yo:0,0,0,75px;" data-text="l:22;a:inherit;" data-rsp_o="off" data-rsp_bd="off"
+                                                                            data-frame_0="y:100%;" data-frame_0_mask="u:t;y:100%;" data-frame_1="e:easeOutCirc;st:3000;sp:1200;sR:2700;" data-frame_1_mask="u:t;" data-frame_999="o:0;e:easeOutCirc;st:w;sp:600;sR:8700;"
+                                                                            style="z-index:14;font-family:Open Sans;">
+                                                                                <div class="slider-button">
+                                                                                    <div class="slider-button1"><a href="http://demos.casethemes.net/archio/project/">Projects</a></div>
+                                                                                    <div class="slider-button2 active"><a href="http://demos.casethemes.net/archio/contact-one/">Contact</a></div>
+                                                                                </div>
+                                                                            </rs-layer>
+                                                                            <!--
+ -->
+                                                                        </rs-group>
+                                                                        <!--
+ -->
+                                                                        <rs-layer id="slider-1-slide-6-layer-10" data-type="text" data-rsp_ch="on" data-xy="xo:1119px;yo:3px;" data-text="l:22;a:inherit;" data-actions='o:click;a:jumptoslide;slide:next;d:0;'
+                                                                        data-frame_1="st:600;sp:600;sR:600;" data-frame_999="o:0;st:w;sp:600;sR:7800;" style="z-index:6;font-family:Open Sans;"><span class="next-slider">Next Slider</span> </rs-layer>
+                                                                        <!--
+ -->
+                                                                        <rs-layer id="slider-1-slide-6-layer-11" data-type="text" data-rsp_ch="on" data-xy="xo:10px;yo:11px;" data-text="l:22;a:inherit;" data-actions='o:click;a:jumptoslide;slide:next;d:0;'
+                                                                        data-frame_1="st:600;sp:600;sR:600;" data-frame_999="o:0;st:w;sp:600;sR:7800;" style="z-index:5;font-family:Open Sans;"><span class="prev-slider">Prev Slider</span> </rs-layer>
+                                                                        <!--
+ -->
+                                                                        <rs-layer id="slider-1-slide-6-layer-12" data-type="text" data-xy="xo:60px;y:m;yo:60px;" data-text="l:22;a:inherit;" data-vbility="t,t,f,f" data-basealign="slide" data-rsp_bd="off"
+                                                                        data-frame_0="sX:0.9;sY:0.9;" data-frame_1="e:easeOutCirc;st:900;sp:2000;sR:900;" data-frame_999="o:0;e:easeOutCirc;st:w;sp:600;sR:6100;" style="z-index:7;font-family:Open Sans;">
+                                                                            <div class="slider-social">
+                                                                                <label>join <cite>us</cite></label>
+                                                                                <div class="social-list">
+                                                                                    <a href="#" class="fa fa-facebook"></a>
+                                                                                    <a href="#" class="fa fa-twitter"></a>
+                                                                                    <a href="#" class="fa fa-pinterest"></a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </rs-layer>
+                                                                        <!--
+-->
+                                                                    </rs-slide>
+                                                                    <rs-slide data-key="rs-10" data-title="Slide" data-anim="ei:d;eo:d;s:d;r:default;t:slidingoverlayhorizontal;sl:d;"> <img decoding="async" src="//demo.casethemes.net/archio/wp-content/uploads/2019/03/bg-slider2.jpg" title="Home" data-parallax="1" class="rev-slidebg" data-no-retina>
+                                                                        <!--
+ -->
+                                                                        <rs-group id="slider-1-slide-10-layer-1" data-type="group" data-xy="x:c,c,c,l;xo:0,0,0,15px;y:m;yo:40px,0,0,0;" data-text="l:22;a:inherit;" data-dim="w:1170px,680px,580px,450px;h:425px,425px,367px,308px;"
+                                                                        data-rsp_bd="off" data-frame_1="sp:600;sR:10;" data-frame_999="o:0;st:w;sp:600;sR:8390;sA:9000;" style="z-index:8;">
+                                                                            <!--
+ -->
+                                                                            <rs-layer id="slider-1-slide-10-layer-2" data-type="text" data-xy="x:c;yo:-8px;" data-text="s:14,14,14,13;l:22;ls:5px;fw:600;a:inherit;" data-rsp_o="off" data-rsp_bd="off" data-frame_0="o:1;"
+                                                                            data-frame_0_chars="d:10;x:200px;o:0;skX:-85px;" data-frame_1="e:easeOutCirc;st:900;sp:1500;sR:890;" data-frame_1_chars="d:10;" data-frame_999="y:-50px;o:0;e:easeOutCirc;st:w;sp:600;sR:5000;"
+                                                                            style="z-index:9;font-family:Poppins;">Discover your dream </rs-layer>
+                                                                            <!--
+ -->
+                                                                            <rs-layer id="slider-1-slide-10-layer-3" data-type="text" data-xy="x:c;yo:40px,40px,32px,32px;" data-text="s:80,80,55,32;l:76,76,60,36;fw:700;a:center;" data-rsp_o="off" data-rsp_bd="off"
+                                                                            data-frame_0="y:-100%;o:1;" data-frame_0_mask="u:t;" data-frame_1="e:easeOutCirc;st:1900;sp:1200;sR:1890;" data-frame_1_mask="u:t;" data-frame_999="o:0;e:easeOutCirc;st:w;sp:600;sR:5900;"
+                                                                            style="z-index:10;font-family:Poppins;">With <cite>the</cite> Touch
+                                                                                <br/> <cite>of</cite> Archio<cite>.</cite> </rs-layer>
+                                                                            <!--
+ -->
+                                                                            <rs-layer id="slider-1-slide-10-layer-4" data-type="text" data-xy="x:c,c,c,l;yo:214px,214px,169px,-9999px;" data-text="s:16,16,16,12;l:26,26,26,22;a:center,center,center,inherit;"
+                                                                            data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:100%;" data-frame_0_mask="u:t;y:100%;" data-frame_1="e:easeOutCirc;st:2400;sp:1200;sR:2390;" data-frame_1_mask="u:t;" data-frame_999="o:0;e:easeOutCirc;st:w;sp:600;sR:5400;"
+                                                                            style="z-index:11;font-family:Muli;">Delivering both full construction logistics and self-delivered
+                                                                                <br/> preliminary solutions </rs-layer>
+                                                                            <!--
+ -->
+                                                                            <rs-layer id="slider-1-slide-10-layer-5" data-type="text" data-xy="x:c;yo:304px,304px,255px,121px;" data-text="s:15;l:15;fw:600;a:inherit;" data-actions='o:click;a:simplelink;target:_self;url:#;'
+                                                                            data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:100%;" data-frame_0_mask="u:t;y:100%;" data-frame_1="e:easeOutCirc;st:2700;sp:1200;sR:2690;" data-frame_1_mask="u:t;" data-frame_999="y:50px;o:0;e:easeOutCirc;st:w;sp:600;sR:5100;"
+                                                                            style="z-index:12;font-family:Muli;cursor:pointer;"><span class="btn-line"><span>View more</span><i class="fa fa-long-arrow-right"></i></span>
+                                                                            </rs-layer>
+                                                                            <!--
+ -->
+                                                                            <rs-layer id="slider-1-slide-10-layer-7" data-type="text" data-xy="x:l,l,l,c;y:b;" data-text="l:22;a:inherit;" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:100%;" data-frame_0_mask="u:t;y:100%;"
+                                                                            data-frame_1="e:easeOutCirc;st:3000;sp:1200;sR:2990;" data-frame_1_mask="u:t;" data-frame_999="o:0;e:easeOutCirc;st:w;sp:600;sR:4800;" style="z-index:13;font-family:Open Sans;">
+                                                                                <div class="slider-button slider-navigation">
+                                                                                    <div class="slider-button1 nav-prev"><i class="fa fa-angle-left"></i></div>
+                                                                                    <div class="slider-button2 nav-next active"><i class="fa fa-angle-right"></i></div>
+                                                                                </div>
+                                                                            </rs-layer>
+                                                                            <!--
+ -->
+                                                                            <rs-layer id="slider-1-slide-10-layer-9" data-type="text" data-xy="x:r,c,c,c;y:b;yo:0,0,0,75px;" data-text="l:22;a:inherit;" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:100%;"
+                                                                            data-frame_0_mask="u:t;y:100%;" data-frame_1="e:easeOutCirc;st:3000;sp:1200;sR:2990;" data-frame_1_mask="u:t;" data-frame_999="o:0;e:easeOutCirc;st:w;sp:600;sR:8990;" style="z-index:14;font-family:Open Sans;">
+                                                                                <div class="slider-button">
+                                                                                    <div class="slider-button1"><a href="http://demos.casethemes.net/archio/project/">Projects</a></div>
+                                                                                    <div class="slider-button2 active"><a href="http://demos.casethemes.net/archio/contact-one/">Contact</a></div>
+                                                                                </div>
+                                                                            </rs-layer>
+                                                                            <!--
+ -->
+                                                                        </rs-group>
+                                                                        <!--
+ -->
+                                                                        <rs-layer id="slider-1-slide-10-layer-10" data-type="text" data-rsp_ch="on" data-xy="xo:1119px;yo:3px;" data-text="l:22;a:inherit;" data-actions='o:click;a:jumptoslide;slide:next;d:0;'
+                                                                        data-frame_1="st:600;sp:600;sR:600;" data-frame_999="o:0;st:w;sp:600;sR:7800;" style="z-index:6;font-family:Open Sans;"><span class="next-slider">Next Slider</span> </rs-layer>
+                                                                        <!--
+ -->
+                                                                        <rs-layer id="slider-1-slide-10-layer-11" data-type="text" data-rsp_ch="on" data-xy="xo:10px;yo:11px;" data-text="l:22;a:inherit;" data-actions='o:click;a:jumptoslide;slide:next;d:0;'
+                                                                        data-frame_1="st:600;sp:600;sR:600;" data-frame_999="o:0;st:w;sp:600;sR:7800;" style="z-index:5;font-family:Open Sans;"><span class="prev-slider">Prev Slider</span> </rs-layer>
+                                                                        <!--
+ -->
+                                                                        <rs-layer id="slider-1-slide-10-layer-12" data-type="text" data-xy="xo:60px;y:m;yo:60px;" data-text="l:22;a:inherit;" data-vbility="t,t,f,f" data-basealign="slide" data-rsp_bd="off"
+                                                                        data-frame_0="sX:0.9;sY:0.9;" data-frame_1="e:easeOutCirc;st:900;sp:2000;sR:900;" data-frame_999="o:0;e:easeOutCirc;st:w;sp:600;sR:6100;" style="z-index:7;font-family:Open Sans;">
+                                                                            <div class="slider-social">
+                                                                                <label>join <cite>us</cite></label>
+                                                                                <div class="social-list">
+                                                                                    <a href="#" class="fa fa-facebook"></a>
+                                                                                    <a href="#" class="fa fa-twitter"></a>
+                                                                                    <a href="#" class="fa fa-pinterest"></a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </rs-layer>
+                                                                        <!--
+-->
+                                                                    </rs-slide>
+                                                                    <rs-slide data-key="rs-9" data-title="Slide" data-anim="ei:d;eo:d;s:d;r:default;t:slidingoverlayhorizontal;sl:d;"> <img decoding="async" src="//demo.casethemes.net/archio/wp-content/uploads/2019/03/bg-slider3.jpg" title="Home" data-parallax="1" class="rev-slidebg" data-no-retina>
+                                                                        <!--
+ -->
+                                                                        <rs-group id="slider-1-slide-9-layer-1" data-type="group" data-xy="x:r;xo:15px;y:m;yo:40px,0,0,0;" data-text="l:22;a:inherit;" data-dim="w:1170px,680px,580px,450px;h:425px,425px,367px,308px;"
+                                                                        data-rsp_bd="off" data-frame_1="sp:600;sR:10;" data-frame_999="o:0;st:w;sp:600;sR:8390;sA:9000;" style="z-index:8;">
+                                                                            <!--
+ -->
+                                                                            <rs-layer id="slider-1-slide-9-layer-2" data-type="text" data-xy="x:r;yo:-8px;" data-text="s:14,14,14,13;l:22;ls:5px;fw:600;a:inherit;" data-rsp_o="off" data-rsp_bd="off" data-frame_0="o:1;"
+                                                                            data-frame_0_chars="d:10;x:-200px;o:0;skX:85px;" data-frame_1="e:easeOutCirc;st:900;sp:1500;sR:890;" data-frame_1_chars="d:10;" data-frame_999="y:-50px;o:0;e:easeOutCirc;st:w;sp:600;sR:5000;"
+                                                                            style="z-index:9;font-family:Poppins;">Discover your dream </rs-layer>
+                                                                            <!--
+ -->
+                                                                            <rs-layer id="slider-1-slide-9-layer-3" data-type="text" data-xy="x:r;yo:40px,40px,32px,32px;" data-text="s:80,80,55,32;l:76,76,60,36;fw:700;a:right;" data-rsp_o="off" data-rsp_bd="off"
+                                                                            data-frame_0="y:-100%;o:1;" data-frame_0_mask="u:t;" data-frame_1="e:easeOutCirc;st:1900;sp:1200;sR:1890;" data-frame_1_mask="u:t;" data-frame_999="o:0;e:easeOutCirc;st:w;sp:600;sR:5900;"
+                                                                            style="z-index:10;font-family:Poppins;">With <cite>the</cite> Touch
+                                                                                <br/> <cite>of</cite> Archio<cite>.</cite> </rs-layer>
+                                                                            <!--
+ -->
+                                                                            <rs-layer id="slider-1-slide-9-layer-4" data-type="text" data-xy="x:r,r,r,l;yo:214px,214px,169px,-9999px;" data-text="s:16,16,16,12;l:26,26,26,22;a:right,right,right,inherit;"
+                                                                            data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:100%;" data-frame_0_mask="u:t;y:100%;" data-frame_1="e:easeOutCirc;st:2400;sp:1200;sR:2390;" data-frame_1_mask="u:t;" data-frame_999="o:0;e:easeOutCirc;st:w;sp:600;sR:5400;"
+                                                                            style="z-index:11;font-family:Muli;">Delivering both full construction logistics and self-delivered
+                                                                                <br/> preliminary solutions </rs-layer>
+                                                                            <!--
+ -->
+                                                                            <rs-layer id="slider-1-slide-9-layer-5" data-type="text" data-xy="x:r;yo:304px,304px,255px,121px;" data-text="s:15;l:15;fw:600;a:inherit;" data-actions='o:click;a:simplelink;target:_self;url:#;'
+                                                                            data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:100%;" data-frame_0_mask="u:t;y:100%;" data-frame_1="e:easeOutCirc;st:2700;sp:1200;sR:2690;" data-frame_1_mask="u:t;" data-frame_999="y:50px;o:0;e:easeOutCirc;st:w;sp:600;sR:5100;"
+                                                                            style="z-index:12;font-family:Muli;cursor:pointer;"><span class="btn-line"><span>View more</span><i class="fa fa-long-arrow-right"></i></span>
+                                                                            </rs-layer>
+                                                                            <!--
+ -->
+                                                                            <rs-layer id="slider-1-slide-9-layer-7" data-type="text" data-xy="x:l,l,l,r;y:b;" data-text="l:22;a:inherit;" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:100%;" data-frame_0_mask="u:t;y:100%;"
+                                                                            data-frame_1="e:easeOutCirc;st:3000;sp:1200;sR:2990;" data-frame_1_mask="u:t;" data-frame_999="o:0;e:easeOutCirc;st:w;sp:600;sR:4800;" style="z-index:13;font-family:Open Sans;">
+                                                                                <div class="slider-button slider-navigation">
+                                                                                    <div class="slider-button1 nav-prev"><i class="fa fa-angle-left"></i></div>
+                                                                                    <div class="slider-button2 nav-next active"><i class="fa fa-angle-right"></i></div>
+                                                                                </div>
+                                                                            </rs-layer>
+                                                                            <!--
+ -->
+                                                                            <rs-layer id="slider-1-slide-9-layer-9" data-type="text" data-xy="x:r,l,r,r;xo:0,120px,0,0;y:b;yo:0,0,0,75px;" data-text="l:22;a:inherit;" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:100%;"
+                                                                            data-frame_0_mask="u:t;y:100%;" data-frame_1="e:easeOutCirc;st:3000;sp:1200;sR:2990;" data-frame_1_mask="u:t;" data-frame_999="o:0;e:easeOutCirc;st:w;sp:600;sR:8990;" style="z-index:14;font-family:Open Sans;">
+                                                                                <div class="slider-button">
+                                                                                    <div class="slider-button1"><a href="http://demos.casethemes.net/archio/project/">Projects</a></div>
+                                                                                    <div class="slider-button2 active"><a href="http://demos.casethemes.net/archio/contact-one/">Contact</a></div>
+                                                                                </div>
+                                                                            </rs-layer>
+                                                                            <!--
+ -->
+                                                                        </rs-group>
+                                                                        <!--
+ -->
+                                                                        <rs-layer id="slider-1-slide-9-layer-10" data-type="text" data-rsp_ch="on" data-xy="xo:1119px;yo:3px;" data-text="l:22;a:inherit;" data-actions='o:click;a:jumptoslide;slide:next;d:0;'
+                                                                        data-frame_1="st:600;sp:600;sR:600;" data-frame_999="o:0;st:w;sp:600;sR:7800;" style="z-index:6;font-family:Open Sans;"><span class="next-slider">Next Slider</span> </rs-layer>
+                                                                        <!--
+ -->
+                                                                        <rs-layer id="slider-1-slide-9-layer-11" data-type="text" data-rsp_ch="on" data-xy="xo:10px;yo:11px;" data-text="l:22;a:inherit;" data-actions='o:click;a:jumptoslide;slide:next;d:0;'
+                                                                        data-frame_1="st:600;sp:600;sR:600;" data-frame_999="o:0;st:w;sp:600;sR:7800;" style="z-index:5;font-family:Open Sans;"><span class="prev-slider">Prev Slider</span> </rs-layer>
+                                                                        <!--
+ -->
+                                                                        <rs-layer id="slider-1-slide-9-layer-12" data-type="text" data-xy="xo:60px;y:m;yo:60px;" data-text="l:22;a:inherit;" data-vbility="t,t,f,f" data-basealign="slide" data-rsp_bd="off"
+                                                                        data-frame_0="sX:0.9;sY:0.9;" data-frame_1="e:easeOutCirc;st:900;sp:2000;sR:900;" data-frame_999="o:0;e:easeOutCirc;st:w;sp:600;sR:6100;" style="z-index:7;font-family:Open Sans;">
+                                                                            <div class="slider-social">
+                                                                                <label>join <cite>us</cite></label>
+                                                                                <div class="social-list">
+                                                                                    <a href="#" class="fa fa-facebook"></a>
+                                                                                    <a href="#" class="fa fa-twitter"></a>
+                                                                                    <a href="#" class="fa fa-pinterest"></a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </rs-layer>
+                                                                        <!--
+-->
+                                                                    </rs-slide>
+                                                                </rs-slides>
+                                                            </rs-module>
+                                                            <script type="text/javascript">
+                                                                setREVStartSize({c: 'rev_slider_1_1',rl:[1240,1024,778,480],el:[860,860,580,580],gw:[1200,1024,778,480],gh:[860,860,580,580],type:'standard',justify:'',layout:'fullwidth',mh:"860"});
+                                                                 var	revapi1,
+                                                                 tpj;
+                                                                 function revinit_revslider11() {
+                                                                 jQuery(function() {
+                                                                 tpj = jQuery;
+                                                                 revapi1 = tpj("#rev_slider_1_1");
+                                                                 if(revapi1==undefined || revapi1.revolution == undefined){
+                                                                 revslider_showDoubleJqueryError("rev_slider_1_1");
+                                                                 }else{
+                                                                 revapi1.revolution({
+                                                                 sliderLayout:"fullwidth",
+                                                                 visibilityLevels:"1240,1024,778,480",
+                                                                 gridwidth:"1200,1024,778,480",
+                                                                 gridheight:"860,860,580,580",
+                                                                 minHeight:860,
+                                                                 spinner:"spinner0",
+                                                                 perspective:600,
+                                                                 perspectiveType:"local",
+                                                                 editorheight:"860,860,580,580",
+                                                                 responsiveLevels:"1240,1024,778,480",
+                                                                 progressBar:{disableProgressBar:true},
+                                                                 navigation: {
+                                                                 onHoverStop:false
+                                                                 },
+                                                                 parallax: {
+                                                                 levels:[45,50,15,20,25,30,35,40,45,46,47,48,49,50,51,55],
+                                                                 type:"scroll"
+                                                                 },
+                                                                 fallbacks: {
+                                                                 allowHTML5AutoPlayOnAndroid:true
+                                                                 },
+                                                                 });
+                                                                 } 
+                                                                 });
+                                                                 } // End of RevInitScript
+                                                                 var once_revslider11 = false;
+                                                                 if (document.readyState === "loading") {document.addEventListener('readystatechange',function() { if((document.readyState === "interactive" || document.readyState === "complete") && !once_revslider11 ) { once_revslider11 = true; revinit_revslider11();}});} else {once_revslider11 = true; revinit_revslider11();}
+                                                            </script>
+                                                        </rs-module-wrap>
+                                                        <!-- END REVOLUTION SLIDER -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div data-vc-full-width="true" data-vc-full-width-init="false" class="vc_row wpb_row vc_row-fluid vc_custom_1552925396318 vc_row-has-fill bg-image-ps-center">
+                                            <div class="wpb_column vc_column_container vc_col-sm-6">
+                                                <div class="vc_column-inner vc_custom_1552813034346">
+                                                    <div class="wpb_wrapper">
+                                                        <div id="ct-video" class="ct-video-wrapper  ">
+                                                            <div class="ct-video-inner">
+                                                                <div class="ct-video-intro1"> <img fetchpriority="high" decoding="async" class="" src="IMG_9330.jpg" width="517" height="512" alt="video-intro1" title="video-intro1"
+                                                                    /></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="wpb_column vc_column_container vc_col-sm-6 rm-padding-lg">
+                                                <div class="vc_column-inner vc_custom_1552902458867">
+                                                    <div class="wpb_wrapper">
+                                                        <div id="ct-space-68df7dea09160" class="">
+                                                            <div class="ct-space"></div>
+                                                        </div>
+                                                        <div id="ct-heading" class="ct-heading  style1 align-left align-left-md align-left-sm align-left-xs ">
+                                                            <div class="ct-heading-sub"> <h1> About Us</h1></div>
+                                                            <p style="color: black;"> 
+900+ PROJECTS
+
+AR. AMIT KOTHIWAL
+
+(FOUNDER AND PRINCIPAL ARCHITECT)
+
+Ar. Amit Kothiwal, (B.Arch- 2005 (Aayojan School Of Architecture) is
+
+a leading architect based in Jaipur with exceptional expertise in
+
+planning, detailing, designing, and coordinating projects across both
+
+public and private sectors.
+
+In 2005, he founded SOMYAKRITI, a multidisciplinary design studio
+
+committed to delivering high-quality and inspirational work. Over
+
+the years, the firm has built a reputation for its thoughtful approach,
+
+blending innovation, sustainability, and functionality to create
+
+spaces that truly serve their users.
+
+Somyakriti offers end-to-end architectural and interior design
+
+services, with a focus on Apartments, Institutional Projects and
+
+Housing Developments.</p>
+                                                            <div class="h-gap"> <span> <i ></i> <i ></i> <i ></i> <i ></i> </span></div>
+                                                        </div>
+                                                        <div class="wpb_text_column wpb_content_element  vc_custom_1552902640438">
+                                                            <div class="wpb_wrapper">
+                                                                <p style="color: #796254;">“Every project at Somyakriti reflects a deep respect for the site, the
+
+client’s vision. Through thoughtful architecture and master planning,
+
+
+
+we transform ideas into living, thriving spaces.”
+
+
+
+-AR AMIT KOTHIWAL
+
+
+
+
+Analysis
+</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="vc_row-full-width vc_clearfix"></div>
+                                        <div data-vc-full-width="true" data-vc-full-width-init="false" class="vc_row wpb_row vc_row-fluid vc_custom_1553186234397 vc_row-has-fill bg-image-ps-bottom">
+                                            <!-- <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                <div class="vc_column-inner vc_custom_1553185907162">
+                                                    <div class="wpb_wrapper">
+                                                        <div class="vc_row wpb_row vc_inner vc_row-fluid"> -->
+
+ <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      text-align: center;
+    }
+
+    .services-section {
+      padding: 50px 20px;
+    }
+
+    .services-section h2 {
+      font-size: 40px;
+      margin-bottom: 15px;
+      letter-spacing: 2px;
+    }
+
+    .services-section p {
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 900px;
+      margin: 0 auto 40px;
+      color: #ccc;
+    }
+
+    .services-images {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .services-images img {
+      width: 100%;
+      max-width: 300px;   /* same width */
+      height: 350px;      /* fixed height */
+      object-fit: cover;  /* crop image but keep ratio */
+      border-radius: 5px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      cursor: pointer;
+    }
+
+    /* Hover Animation */
+    .services-images img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+    }
+
+    @media (max-width: 768px) {
+      .services-images {
+        flex-direction: column;
+        align-items: center;
+      }
+      .services-images img {
+        max-width: 100%;
+        height: 250px;
+      }
+    }
+  </style>
+
+  <section class="services-section">
+    <h2 style="
+    color: white;
+">SERVICES</h2>
+    <p>
+      Working across disciplines of architecture, interiors, furniture, lighting, 
+      product design, and landscaping, the dedicated team at the design house, led by the 
+      immaculately polished style sense of Aparna herself, conceive and execute synergistic, 
+      forward-thinking and visually striking projects.
+    </p>
+
+    <div class="services-images">
+      <img src="Tulip_Cam008.jpg" alt="Service 1">
+      <img src="services3.jpg" alt="Service 2">
+      <img src="services2.jpg" alt="Service 3">
+      <img src="Tulip_Cam008.jpg" alt="Service 1">
+      <img src="services3.jpg" alt="Service 2">
+      <img src="services2.jpg" alt="Service 3">
+      <img src="Tulip_Cam008.jpg" alt="Service 1">
+      <img src="services3.jpg" alt="Service 2">
+      <img src="services2.jpg" alt="Service 3">
+            <!-- <img src="Tulip_Cam008.jpg" alt="Service 1">
+      <img src="services3.jpg" alt="Service 2">
+      <img src="services2.jpg" alt="Service 3"> -->
+    </div>
+  </section>
+
+
+
+                                                            <!-- <div class="wpb_column vc_column_container vc_col-sm-4 wpb_animate_when_almost_visible wpb_fadeInUp fadeInUp">
+                                                                <div class="vc_column-inner vc_custom_1553218647304">
+                                                                    <div class="wpb_wrapper">
+                                                                        <div class="ct-fancybox-wrap"> <a class="ct-fancybox-more-link btn-line" href="#" target="_self"><span>More Services</span><i class="fa fa-plus-circle"></i></a>
+                                                                            <div class="ct-fancybox-layout2 active ">
+                                                                                <div class="ct-fancybox-inner">
+                                                                                    <div class="ct-fancybox-holder">
+                                                                                        <div class="ct-fancybox-hover">
+                                                                                            <div class="ct-fancybox-icon"> <img decoding="async" class="icon-main" src="https://demo.casethemes.net/archio/wp-content/uploads/2019/03/box-icon5.png" alt="Architecture" /></div>
+                                                                                            <div class="ct-fancybox-content">
+                                                                                                <h3 class="ct-fancybox-title" style=""> <a href="#" target="_self"> Architecture </a></h3>
+                                                                                                <div class="ct-fancybox-desc" style=""> Lorem ipsum dolor sit amet, consectetur adipisicing elitlabore et dolore magna aliqua.</div>
+                                                                                            </div> <a class="ct-fancybox-more" href="#" target="_self"><i class="ct-icon-plus"></i></a></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="wpb_column vc_column_container vc_col-sm-4 wpb_animate_when_almost_visible wpb_fadeInRight fadeInRight">
+                                                                <div class="vc_column-inner vc_custom_1553218656444">
+                                                                    <div class="wpb_wrapper">
+                                                                        <div class="ct-fancybox-wrap">
+                                                                            <div class="ct-fancybox-layout2  ">
+                                                                                <div class="ct-fancybox-inner">
+                                                                                    <div class="ct-fancybox-holder">
+                                                                                        <div class="ct-fancybox-hover">
+                                                                                            <div class="ct-fancybox-icon"> <img decoding="async" class="icon-main" src="https://demo.casethemes.net/archio/wp-content/uploads/2019/03/box-icon6.png" alt="Interior" /></div>
+                                                                                            <div class="ct-fancybox-content">
+                                                                                                <h3 class="ct-fancybox-title" style=""> <a href="#" target="_self"> Interior </a></h3>
+                                                                                                <div class="ct-fancybox-desc" style=""> Lorem ipsum dolor sit amet, consectetur adipisicing elitlabore et dolore magna aliqua.</div>
+                                                                                            </div> <a class="ct-fancybox-more" href="#" target="_self"><i class="ct-icon-plus"></i></a></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="wpb_column vc_column_container vc_col-sm-4 wpb_animate_when_almost_visible wpb_fadeInRight fadeInRight">
+                                                                <div class="vc_column-inner vc_custom_1553218664032">
+                                                                    <div class="wpb_wrapper">
+                                                                        <div class="ct-fancybox-wrap">
+                                                                            <div class="ct-fancybox-layout2  ">
+                                                                                <div class="ct-fancybox-inner">
+                                                                                    <div class="ct-fancybox-holder">
+                                                                                        <div class="ct-fancybox-hover">
+                                                                                            <div class="ct-fancybox-icon"> <img decoding="async" class="icon-main" src="https://demo.casethemes.net/archio/wp-content/uploads/2019/03/box-icon7.png" alt="Plannings" /></div>
+                                                                                            <div class="ct-fancybox-content">
+                                                                                                <h3 class="ct-fancybox-title" style=""> <a href="#" target="_self"> Plannings </a></h3>
+                                                                                                <div class="ct-fancybox-desc" style=""> Lorem ipsum dolor sit amet, consectetur adipisicing elitlabore et dolore magna aliqua.</div>
+                                                                                            </div> <a class="ct-fancybox-more" href="#" target="_self"><i class="ct-icon-plus"></i></a></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div> -->
+                                                        <!-- </div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                        <div class="vc_row-full-width vc_clearfix"></div>
+                                        <div data-vc-full-width="true" data-vc-full-width-init="false" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid vc_row-no-padding bg-image-ps-inherit">
+                                            <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                <div class="vc_column-inner vc_custom_1552709233494">
+                                                    <div class="wpb_wrapper">
+                                                        <div id="ct-portfolio-carousel" class="ct-carousel-portfolio1 owl-carousel " data-item-xs=1 data-item-sm=1 data-item-md=2 data-item-lg=3 data-item-xl=3 data-margin=0 data-loop=true data-autoplay=false
+                                                        data-autoplaytimeout=5000 data-smartspeed=250 data-center=false data-arrows=true data-bullets=false data-stagepadding=0 data-stagepadding-xl=0 data-stagepadding-lg=0 data-rtl=false>
+                                                            <div class="ct-carousel-item">
+                                                                <div class="grid-item-inner">
+                                                                    <div class="item-featured"> <img decoding="async" class="" src="https://demo.casethemes.net/archio/wp-content/uploads/2018/10/archio2-640x960.jpg" width="640" height="960" alt="archio2" title="archio2" />
+                                                                        <a href="https://demo.casethemes.net/archio/portfolio/fantastic-interior/"
+                                                                        class="item-overlay"></a>
+                                                                    </div>
+                                                                    <div class="item-holder">
+                                                                        <h3 class="item-title"> <a href="https://demo.casethemes.net/archio/portfolio/fantastic-interior/"> Fantastic <br />interior </a></h3>
+                                                                        <div class="item-except">Lorem ipsum dolor sit amet, Deora consectetur adipisicing.</div>
+                                                                        <div class="item-category"><a href="https://demo.casethemes.net/archio/portfolio-category/hotel/" rel="tag">Hotel</a></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="ct-carousel-item">
+                                                                <div class="grid-item-inner">
+                                                                    <div class="item-featured"> <img decoding="async" class="" src="https://demo.casethemes.net/archio/wp-content/uploads/2018/04/archio7-640x960.jpg" width="640" height="960" alt="archio7" title="archio7" />
+                                                                        <a href="https://demo.casethemes.net/archio/portfolio/mendella-exterior/"
+                                                                        class="item-overlay"></a>
+                                                                    </div>
+                                                                    <div class="item-holder">
+                                                                        <h3 class="item-title"> <a href="https://demo.casethemes.net/archio/portfolio/mendella-exterior/"> Mendella <br />exterior </a></h3>
+                                                                        <div class="item-except">Lorem ipsum dolor sit amet, Deora consectetur adipisicing.</div>
+                                                                        <div class="item-category"><a href="https://demo.casethemes.net/archio/portfolio-category/hall/" rel="tag">Hall</a></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="ct-carousel-item">
+                                                                <div class="grid-item-inner">
+                                                                    <div class="item-featured"> <img loading="lazy" decoding="async" class="" src="https://demo.casethemes.net/archio/wp-content/uploads/2018/10/archio4-640x960.jpg" width="640" height="960" alt="archio4" title="archio4"
+                                                                        />
+                                                                        <a href="https://demo.casethemes.net/archio/portfolio/scott-villa-du/" class="item-overlay"></a>
+                                                                    </div>
+                                                                    <div class="item-holder">
+                                                                        <h3 class="item-title"> <a href="https://demo.casethemes.net/archio/portfolio/scott-villa-du/"> Scott <br />Villa du </a></h3>
+                                                                        <div class="item-except">Lorem ipsum dolor sit amet, Deora consectetur adipisicing.</div>
+                                                                        <div class="item-category"><a href="https://demo.casethemes.net/archio/portfolio-category/residence/" rel="tag">Residence</a></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="vc_row-full-width vc_clearfix"></div>
+                                        <div data-vc-full-width="true" data-vc-full-width-init="false" class="vc_row wpb_row vc_row-fluid vc_custom_1552920422705 vc_row-has-fill bg-image-ps-inherit">
+                                            <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                <div class="vc_column-inner vc_custom_1552920415316">
+                                                    <div class="wpb_wrapper"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="vc_row-full-width vc_clearfix"></div>
+                                        <!-- <div data-vc-full-width="true" data-vc-full-width-init="false" data-vc-parallax="1.8" data-vc-parallax-image="https://demo.casethemes.net/archio/wp-content/uploads/2019/03/bg-parallax-1-update.jpg" class="vc_row wpb_row vc_row-fluid vc_custom_1553652443041 vc_row-has-fill vc_general vc_parallax vc_parallax-content-moving bg-image-ps-center">
+                                            <div class="wpb_column vc_column_container vc_col-sm-4 vc_col-lg-3 vc_col-md-3 rm-padding-lg">
+                                                <div class="vc_column-inner vc_custom_1552924507632">
+                                                    <div class="wpb_wrapper">
+                                                        <div class="ct-textbox-layout1  ">
+                                                            <div class="ct-textbox-inner">
+                                                                <h3 class="ct-textbox-title"> our <cite>golden</cite></h3>
+                                                                <div class="ct-textbox-number"> 15</div>
+                                                                <h6 class="ct-textbox-sub-title"> years</h6></div>
+                                                        </div>
+                                                        <div id="ct-heading-2" class="ct-heading white-bold style1 align-left align-left-md align-left-sm align-left-xs ">
+                                                            <h3 class="ct-heading-tag" style="margin-top:47px;margin-bottom:0px;color:#ffffff;font-size:24px;line-height:30px;font-weight:400; "> Our established<br /> business in<br /> <cite>8 countries</cite></h3></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="wpb_column vc_column_container vc_col-sm-8 vc_col-lg-9 vc_col-md-9 rm-padding-lg">
+                                                <div class="vc_column-inner vc_custom_1552924513372">
+                                                    <div class="wpb_wrapper">
+                                                        <div id="ct-space-68df7dea0dba5" class="">
+                                                            <div class="ct-space"></div>
+                                                        </div>
+                                                        <div class="wpb_single_image wpb_content_element vc_align_center  vc_custom_1552923102093 inherit inherit">
+                                                            <figure class="wpb_wrapper vc_figure">
+                                                                <a href="https://demo.casethemes.net/archio/" target="_self" class="vc_single_image-wrapper default  vc_box_border_grey"><img loading="lazy" decoding="async" width="244" height="58" src="https://demo.casethemes.net/archio/wp-content/uploads/2019/03/logo-white.png" class="vc_single_image-img attachment-full"
+                                                                    alt="" title="logo-white" /></a>
+                                                            </figure>
+                                                        </div>
+                                                        <div id="ct-space-68df7dea0ef1a" class="">
+                                                            <div class="ct-space"></div>
+                                                        </div>
+                                                        <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                                            <div class="wpb_column vc_column_container vc_col-sm-6 vc_col-lg-3 vc_col-md-3">
+                                                                <div class="vc_column-inner vc_custom_1552923835415">
+                                                                    <div class="wpb_wrapper">
+                                                                        <div id="ct-counter" class="ct-counter ct-counter-default  ">
+                                                                            <div class="ct-counter-inner"> <span id="ct-counter-digit" class="ct-counter-digit" data-grouping="0" data-separator="" data-digit="155" data-prefix="" data-suffix="+" style=""></span>
+                                                                                <h3 class="ct-counter-title"
+                                                                                style=""> project done</h3></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="wpb_column vc_column_container vc_col-sm-6 vc_col-lg-3 vc_col-md-3">
+                                                                <div class="vc_column-inner vc_custom_1552923825582">
+                                                                    <div class="wpb_wrapper">
+                                                                        <div id="ct-space-68df7dea0f7ee" class="">
+                                                                            <div class="ct-space"></div>
+                                                                        </div>
+                                                                        <div id="ct-counter-2" class="ct-counter ct-counter-default  ">
+                                                                            <div class="ct-counter-inner"> <span id="ct-counter-2-digit" class="ct-counter-digit" data-grouping="0" data-separator="" data-digit="18" data-prefix="" data-suffix="+" style=""></span>
+                                                                                <h3 class="ct-counter-title"
+                                                                                style=""> group member</h3></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="wpb_column vc_column_container vc_col-sm-6 vc_col-lg-3 vc_col-md-3">
+                                                                <div class="vc_column-inner vc_custom_1552923845488">
+                                                                    <div class="wpb_wrapper">
+                                                                        <div id="ct-counter-3" class="ct-counter ct-counter-default  ">
+                                                                            <div class="ct-counter-inner"> <span id="ct-counter-3-digit" class="ct-counter-digit" data-grouping="0" data-separator="" data-digit="25" data-prefix="" data-suffix="+" style=""></span>
+                                                                                <h3 class="ct-counter-title"
+                                                                                style=""> pending work</h3></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="wpb_column vc_column_container vc_col-sm-6 vc_col-lg-3 vc_col-md-3">
+                                                                <div class="vc_column-inner vc_custom_1552923854215">
+                                                                    <div class="wpb_wrapper">
+                                                                        <div id="ct-space-68df7dea0fe74" class="">
+                                                                            <div class="ct-space"></div>
+                                                                        </div>
+                                                                        <div id="ct-counter-4" class="ct-counter ct-counter-default  ">
+                                                                            <div class="ct-counter-inner"> <span id="ct-counter-4-digit" class="ct-counter-digit" data-grouping="0" data-separator="" data-digit="15" data-prefix="" data-suffix="+" style=""></span>
+                                                                                <h3 class="ct-counter-title"
+                                                                                style=""> years experience</h3></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="ct-space-68df7dea10198" class="">
+                                                            <div class="ct-space"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="vc_row-full-width vc_clearfix"></div> -->
+                                        <div data-vc-full-width="true" data-vc-full-width-init="false" class="vc_row wpb_row vc_row-fluid vc_custom_1552920422705 vc_row-has-fill bg-image-ps-inherit">
+                                            <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                <div class="vc_column-inner vc_custom_1553218849632">
+                                                    <div class="wpb_wrapper"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="vc_row-full-width vc_clearfix"></div>
+                                        <div class="vc_row wpb_row vc_row-fluid bg-image-ps-inherit">
+                                            <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                <div class="vc_column-inner vc_custom_1553225917830">
+                                                    <div class="wpb_wrapper">
+                                                        <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                                            <div class="wpb_column vc_column_container vc_col-sm-3">
+                                                                <div class="vc_column-inner vc_custom_1553223877435">
+                                                                    <div class="wpb_wrapper">
+                                                                        <div id="ct-space-68df7dea10a3b" class="">
+                                                                            <div class="ct-space"></div>
+                                                                        </div>
+                                                                        <div class="wpb_single_image wpb_content_element vc_align_left  vc_custom_1553591829233 image_align_xs_center inherit">
+                                                                            <figure class="wpb_wrapper vc_figure">
+                                                                                <div class="vc_single_image-wrapper default  vc_box_border_grey"><img loading="lazy" decoding="async" width="294" height="310" src="https://demo.casethemes.net/archio/wp-content/uploads/2019/03/word-c.png" class="vc_single_image-img attachment-full"
+                                                                                    alt="" title="word-c" /></div>
+                                                                            </figure>
+                                                                        </div>
+                                                                        <div id="ct-space-68df7dea1107a" class="">
+                                                                            <div class="ct-space"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="wpb_column vc_column_container vc_col-sm-9 rm-padding-md">
+                                                                <div class="vc_column-inner vc_custom_1553592012441">
+                                                                    <div class="wpb_wrapper">
+                                                                        <div id="ct-heading-3" class="ct-heading  style1 align-left align-left-md align-left-sm align-left-xs ">
+                                                                            <div class="ct-heading-sub"> <span></span> Clients</div>
+                                                                            <h3 class="ct-heading-tag" style="font-size:40px;line-height:50px; "> We depends on our<br /> trusted <cite>clients</cite></h3>
+                                                                            <div class="h-gap"> <span> <i ></i> <i ></i> <i ></i> <i ></i> </span></div>
+                                                                        </div>
+                                                                        <div id="ct-space-68df7dea11402" class="">
+                                                                            <div class="ct-space"></div>
+                                                                        </div>
+                                                                        <div id="ct-client-carousel" class="ct-client-carousel default owl-carousel" data-item-xs=2 data-item-sm=3 data-item-md=3 data-item-lg=4 data-item-xl=4 data-margin=45 data-loop=true
+                                                                        data-autoplay=true data-autoplaytimeout=10000 data-smartspeed=600 data-center=false data-arrows=true data-bullets=false data-stagepadding=0 data-stagepadding-xl=0 data-stagepadding-lg=0
+                                                                        data-rtl=false>
+                                                                            <div class="ct-client-item">
+                                                                                <a href="#" target="_self"> <img decoding="async" src="https://demo.casethemes.net/archio/wp-content/uploads/2019/03/client1.png" alt="1058" /> <span class="line-effect"> <span></span> </span>
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="ct-client-item">
+                                                                                <a href="#" target="_self"> <img decoding="async" src="https://demo.casethemes.net/archio/wp-content/uploads/2019/03/client2.png" alt="1059" /> <span class="line-effect"> <span></span> </span>
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="ct-client-item">
+                                                                                <a href="#" target="_self"> <img decoding="async" src="https://demo.casethemes.net/archio/wp-content/uploads/2019/03/client3.png" alt="1060" /> <span class="line-effect"> <span></span> </span>
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="ct-client-item">
+                                                                                <a href="#" target="_self"> <img decoding="async" src="https://demo.casethemes.net/archio/wp-content/uploads/2019/03/client4.png" alt="1061" /> <span class="line-effect"> <span></span> </span>
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="ct-client-item">
+                                                                                <a href="#" target="_self"> <img decoding="async" src="https://demo.casethemes.net/archio/wp-content/uploads/2019/03/client1.png" alt="1058" /> <span class="line-effect"> <span></span> </span>
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="ct-client-item">
+                                                                                <a href="#" target="_self"> <img decoding="async" src="https://demo.casethemes.net/archio/wp-content/uploads/2019/03/client2.png" alt="1059" /> <span class="line-effect"> <span></span> </span>
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="ct-client-item">
+                                                                                <a href="#" target="_self"> <img decoding="async" src="https://demo.casethemes.net/archio/wp-content/uploads/2019/03/client3.png" alt="1060" /> <span class="line-effect"> <span></span> </span>
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="ct-client-item">
+                                                                                <a href="#" target="_self"> <img decoding="async" src="https://demo.casethemes.net/archio/wp-content/uploads/2019/03/client4.png" alt="1061" /> <span class="line-effect"> <span></span> </span>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="vc_row wpb_row vc_row-fluid bg-image-ps-inherit">
+                                            <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                <div class="vc_column-inner vc_custom_1553227144918">
+                                                    <div class="wpb_wrapper">
+                                                        <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                                            <div class="wpb_column vc_column_container vc_col-sm-3">
+                                                                <div class="vc_column-inner">
+                                                                    <div class="wpb_wrapper"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="wpb_column vc_column_container vc_col-sm-6">
+                                                                <div class="vc_column-inner vc_custom_1553226190183">
+                                                                    <div class="wpb_wrapper">
+                                                                        <div id="ct-heading-4" class="ct-heading  style1 align-center align-center-md align-center-sm align-center-xs ">
+                                                                            <div class="ct-heading-sub"> <span></span> Recent News</div>
+                                                                            <h3 class="ct-heading-tag" style="font-size:40px;line-height:50px; "> Our news can give you information for <cite>foundation</cite></h3>
+                                                                            <div class="h-gap"> <span> <i ></i> <i ></i> <i ></i> <i ></i> </span></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="wpb_column vc_column_container vc_col-sm-3">
+                                                                <div class="vc_column-inner">
+                                                                    <div class="wpb_wrapper"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="ct-blog-carousel" class="ct-grid ct-carousel-blog-layout1 owl-carousel " data-item-xs=1 data-item-sm=2 data-item-md=2 data-item-lg=2 data-item-xl=2 data-margin=30 data-loop=true data-autoplay=true
+                                                        data-autoplaytimeout=10000 data-smartspeed=600 data-center=false data-arrows=false data-bullets=false data-stagepadding=0 data-stagepadding-xl=0 data-stagepadding-lg=0 data-rtl=false>
+                                                            <div class="ct-carousel-item">
+                                                                <div class="grid-item-inner">
+                                                                    <div class="entry-featured">
+                                                                        <a href="https://demo.casethemes.net/archio/we-are-opening-new-office/"> <img loading="lazy" decoding="async" class="" src="https://demo.casethemes.net/archio/wp-content/uploads/2018/10/archio1-570x244.jpg" width="570" height="244" alt="archio1" title="archio1"
+                                                                            /> </a>
+                                                                    </div>
+                                                                    <div class="item-body">
+                                                                        <div class="item-body-inner">
+                                                                            <ul class="item-meta">
+                                                                                <li class="item-author"><span>by </span><a href="https://demo.casethemes.net/archio/author/admin/" title="Posts by Riva Collins" rel="author">Riva Collins</a></li>
+                                                                                <li class="item-date">October 18, 2018</li>
+                                                                            </ul>
+                                                                            <h3 class="item-title" style=""> <a href="https://demo.casethemes.net/archio/we-are-opening-new-office/">We are opening new office</a></h3>
+                                                                            <div class="item-more">
+                                                                                <a href="https://demo.casethemes.net/archio/we-are-opening-new-office/"> <span>read more</span> <i class="fa fa-long-arrow-right"></i> </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="ct-carousel-item">
+                                                                <div class="grid-item-inner">
+                                                                    <div class="entry-featured">
+                                                                        <a href="https://demo.casethemes.net/archio/job-opportunity-in-architecture/"> <img loading="lazy" decoding="async" class="" src="https://demo.casethemes.net/archio/wp-content/uploads/2018/10/archio2-570x244.jpg" width="570" height="244" alt="archio2" title="archio2"
+                                                                            /> </a>
+                                                                    </div>
+                                                                    <div class="item-body">
+                                                                        <div class="item-body-inner">
+                                                                            <ul class="item-meta">
+                                                                                <li class="item-author"><span>by </span><a href="https://demo.casethemes.net/archio/author/admin/" title="Posts by Riva Collins" rel="author">Riva Collins</a></li>
+                                                                                <li class="item-date">August 18, 2018</li>
+                                                                            </ul>
+                                                                            <h3 class="item-title" style=""> <a href="https://demo.casethemes.net/archio/job-opportunity-in-architecture/">Job opportunity in architecture</a></h3>
+                                                                            <div class="item-more">
+                                                                                <a href="https://demo.casethemes.net/archio/job-opportunity-in-architecture/"> <span>read more</span> <i class="fa fa-long-arrow-right"></i> </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="ct-carousel-item">
+                                                                <div class="grid-item-inner">
+                                                                    <div class="entry-featured">
+                                                                        <a href="https://demo.casethemes.net/archio/we-want-to-hire-someone-for-job/"> <img loading="lazy" decoding="async" class="" src="https://demo.casethemes.net/archio/wp-content/uploads/2018/10/archio3-570x244.jpg" width="570" height="244" alt="archio3" title="archio3"
+                                                                            /> </a>
+                                                                    </div>
+                                                                    <div class="item-body">
+                                                                        <div class="item-body-inner">
+                                                                            <ul class="item-meta">
+                                                                                <li class="item-author"><span>by </span><a href="https://demo.casethemes.net/archio/author/admin/" title="Posts by Riva Collins" rel="author">Riva Collins</a></li>
+                                                                                <li class="item-date">July 18, 2018</li>
+                                                                            </ul>
+                                                                            <h3 class="item-title" style=""> <a href="https://demo.casethemes.net/archio/we-want-to-hire-someone-for-job/">We want to hire someone for job</a></h3>
+                                                                            <div class="item-more">
+                                                                                <a href="https://demo.casethemes.net/archio/we-want-to-hire-someone-for-job/"> <span>read more</span> <i class="fa fa-long-arrow-right"></i> </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="ct-carousel-item">
+                                                                <div class="grid-item-inner">
+                                                                    <div class="entry-featured">
+                                                                        <a href="https://demo.casethemes.net/archio/cops-kill-bull-attacking-own/"> <img loading="lazy" decoding="async" class="" src="https://demo.casethemes.net/archio/wp-content/uploads/2018/10/archio4-570x244.jpg" width="570" height="244" alt="archio4" title="archio4"
+                                                                            /> </a>
+                                                                    </div>
+                                                                    <div class="item-body">
+                                                                        <div class="item-body-inner">
+                                                                            <ul class="item-meta">
+                                                                                <li class="item-author"><span>by </span><a href="https://demo.casethemes.net/archio/author/admin/" title="Posts by Riva Collins" rel="author">Riva Collins</a></li>
+                                                                                <li class="item-date">June 18, 2018</li>
+                                                                            </ul>
+                                                                            <h3 class="item-title" style=""> <a href="https://demo.casethemes.net/archio/cops-kill-bull-attacking-own/">Cops kill bull attacking own</a></h3>
+                                                                            <div class="item-more">
+                                                                                <a href="https://demo.casethemes.net/archio/cops-kill-bull-attacking-own/"> <span>read more</span> <i class="fa fa-long-arrow-right"></i> </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="ct-carousel-item">
+                                                                <div class="grid-item-inner">
+                                                                    <div class="entry-featured">
+                                                                        <a href="https://demo.casethemes.net/archio/how-we-built-big-yellow-tunnel/"> <img loading="lazy" decoding="async" class="" src="https://demo.casethemes.net/archio/wp-content/uploads/2018/10/archio5-570x244.jpg" width="570" height="244" alt="archio5" title="archio5"
+                                                                            /> </a>
+                                                                    </div>
+                                                                    <div class="item-body">
+                                                                        <div class="item-body-inner">
+                                                                            <ul class="item-meta">
+                                                                                <li class="item-author"><span>by </span><a href="https://demo.casethemes.net/archio/author/admin/" title="Posts by Riva Collins" rel="author">Riva Collins</a></li>
+                                                                                <li class="item-date">May 18, 2018</li>
+                                                                            </ul>
+                                                                            <h3 class="item-title" style=""> <a href="https://demo.casethemes.net/archio/how-we-built-big-yellow-tunnel/">How we built big yellow tunnel</a></h3>
+                                                                            <div class="item-more">
+                                                                                <a href="https://demo.casethemes.net/archio/how-we-built-big-yellow-tunnel/"> <span>read more</span> <i class="fa fa-long-arrow-right"></i> </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="ct-carousel-item">
+                                                                <div class="grid-item-inner">
+                                                                    <div class="entry-featured">
+                                                                        <a href="https://demo.casethemes.net/archio/tom-krizmanic-speaks-about-neutral/"> <img loading="lazy" decoding="async" class="" src="https://demo.casethemes.net/archio/wp-content/uploads/2018/04/archio7-570x244.jpg" width="570" height="244" alt="archio7" title="archio7"
+                                                                            /> </a>
+                                                                    </div>
+                                                                    <div class="item-body">
+                                                                        <div class="item-body-inner">
+                                                                            <ul class="item-meta">
+                                                                                <li class="item-author"><span>by </span><a href="https://demo.casethemes.net/archio/author/admin/" title="Posts by Riva Collins" rel="author">Riva Collins</a></li>
+                                                                                <li class="item-date">April 18, 2018</li>
+                                                                            </ul>
+                                                                            <h3 class="item-title" style=""> <a href="https://demo.casethemes.net/archio/tom-krizmanic-speaks-about-neutral/">Tom krizmanic speaks about neutral</a></h3>
+                                                                            <div class="item-more">
+                                                                                <a href="https://demo.casethemes.net/archio/tom-krizmanic-speaks-about-neutral/"> <span>read more</span> <i class="fa fa-long-arrow-right"></i> </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                    <!-- .entry-content -->
+                                </article>
+                                <!-- #post-8 -->
+                            </main>
+                            <!-- #main -->
+                        </div>
+                        <!-- #primary -->
+                    </div>
+                </div>
+            </div>
+            <!-- #content inner -->
+        </div>
+        <!-- #content -->
+        <footer id="colophon" class="site-footer bg-image">
+            <div class="top-footer column-width-change">
+                <div class="container">
+                    <div class="row">
+                        <div class="ct-footer-item col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <section id="text-3" class="footer-about widget widget_text">
+                                <div class="textwidget">
+                                    <p>Let’s
+                                        <br /> Talk
+                                        <br /> <cite>with us&#8230;</cite></p>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="ct-footer-item col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <section id="text-4" class="widget widget_text">
+                                <h2 class="footer-widget-title"><span>call</span></h2>
+                                <div class="textwidget">
+                                    <p>+333 22 42 38
+                                        <br /> +333 22 42 65</p>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="ct-footer-item col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <section id="text-5" class="widget widget_text">
+                                <h2 class="footer-widget-title"><span>mail</span></h2>
+                                <div class="textwidget">
+                                    <p>archio@gmail.com
+                                        <br /> info@gmail.com</p>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="ct-footer-item col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <section id="text-6" class="footer-address widget widget_text">
+                                <h2 class="footer-widget-title"><span>address</span></h2>
+                                <div class="textwidget">
+                                    <p>012, moke road,
+                                        <br /> 2 notron street,
+                                        <br /> USA.</p>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="bottom-logo">
+                            <a href="https://demo.casethemes.net/archio/"><img src="https://demo.casethemes.net/archio/wp-content/themes/archio/assets/images/logo-footer.png" alt="Footer Logo" /></a>
+                        </div>
+                        <div class="bottom-social"> <a href="#" target="_blank"><span>share</span><i class="fa fa-facebook"></i></a><a href="#" target="_blank"><span>youtube</span><i class="fa fa-youtube-play"></i></a></div>
+                        <div class="bottom-copyright"> Copyright &copy; 2025. All Right Reserved.</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <a href="#" class="ct-scroll-top"> <i class="ti-angle-up"></i> </a>
+        <div class="hidden-sidebar-overlay"></div>
+        <div class="hidden-sidebar">
+            <div class="ct-close hidden-sidebar-close"></div>
+            <div class="hidden-sidebar-inner">
+                <section id="ct_recent_posts-4" class="widget widget_ct_recent_posts">
+                    <div class="widget-content">
+                        <h2 class="widget-title">Recent Posts</h2>
+                        <div class="posts-list">
+                            <div class="entry-brief">
+                                <div class="entry-media">
+                                    <a href="https://demo.casethemes.net/archio/we-are-opening-new-office/"><img src="https://demo.casethemes.net/archio/wp-content/uploads/2018/10/archio1-150x150.jpg" alt="We are opening new office" /></a>
+                                </div>
+                                <div class="entry-content">
+                                    <h4 class="entry-title"><a href="https://demo.casethemes.net/archio/we-are-opening-new-office/" title="We are opening new office">We are opening new office</a></h4>
+                                    <ul class="entry-meta">
+                                        <li class="item-date"> <i class="fa fa-calendar"></i>October 18, 2018</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="entry-brief">
+                                <div class="entry-media">
+                                    <a href="https://demo.casethemes.net/archio/job-opportunity-in-architecture/"><img src="https://demo.casethemes.net/archio/wp-content/uploads/2018/10/archio2-150x150.jpg" alt="Job opportunity in architecture" /></a>
+                                </div>
+                                <div class="entry-content">
+                                    <h4 class="entry-title"><a href="https://demo.casethemes.net/archio/job-opportunity-in-architecture/" title="Job opportunity in architecture">Job opportunity in architecture</a></h4>
+                                    <ul class="entry-meta">
+                                        <li class="item-date"> <i class="fa fa-calendar"></i>August 18, 2018</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="entry-brief">
+                                <div class="entry-media">
+                                    <a href="https://demo.casethemes.net/archio/we-want-to-hire-someone-for-job/"><img src="https://demo.casethemes.net/archio/wp-content/uploads/2018/10/archio3-150x150.jpg" alt="We want to hire someone for job" /></a>
+                                </div>
+                                <div class="entry-content">
+                                    <h4 class="entry-title"><a href="https://demo.casethemes.net/archio/we-want-to-hire-someone-for-job/" title="We want to hire someone for job">We want to hire someone for job</a></h4>
+                                    <ul class="entry-meta">
+                                        <li class="item-date"> <i class="fa fa-calendar"></i>July 18, 2018</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="contact-info widget">
+                    <h3 class="footer-widget-title widget-title">Contact Us</h3>
+                    <ul class="ct-contact-info-inner style1">
+                        <li> <i class="fa fa-envelope"></i> <span>info@example.com</span></li>
+                        <li> <i class="fa fa-home"></i> <span>6701 Democracy Blvd, Suite 300, USA</span></li>
+                    </ul>
+                </div>
+                <section id="cs_social_widget-2" class="widget widget_cs_social_widget">
+                    <div class="widget-content">
+                        <h2 class="widget-title">Follow Us</h2>
+                        <ul class='ct-social'>
+                            <li><a class="hover-effect social-facebook" target="_blank" href="#"><i class="fa fa-facebook"></i><span>Facebook</span></a></li>
+                            <li><a class="hover-effect social-twitter" target="_blank" href="#"><i class="fa fa-twitter"></i><span>Twitter</span></a></li>
+                            <li><a class="hover-effect social-linkedin" target="_blank" href="#"><i class="fa fa-linkedin"></i><span>Linkedin</span></a></li>
+                            <li><a class="hover-effect social-pinterest" target="_blank" href="#"><i class="fa fa-pinterest"></i><span>Pinterest</span></a></li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <!-- #page -->
+    <!-- <script type="speculationrules"> {"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/archio\/*"},{"not":{"href_matches":["\/archio\/wp-*.php","\/archio\/wp-admin\/*","\/archio\/wp-content\/uploads\/*","\/archio\/wp-content\/*","\/archio\/wp-content\/plugins\/*","\/archio\/wp-content\/themes\/archio\/*","\/archio\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch,
+        .no-prefetch a"}}]},"eagerness":"conservative"}]} </script> <a class="pxl-buy-now" href="https://1.envato.market/casethemes-archio" target="_blank"> Buy on <img src="https://demo.casethemes.net/archio/wp-content/plugins/envato-purchase-link/img/envato.png" /> </a> -->
+    <link
+    rel="stylesheet" property="stylesheet" id="rs-icon-set-fa-icon-css" href="https://demo.casethemes.net/archio/wp-content/plugins/revslider/public/assets/fonts/font-awesome/css/font-awesome.css" type="text/css" media="all" />
+    <script type="text/javascript">
+        (function () {
+         var c = document.body.className;
+         c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+         document.body.className = c;
+         })();
+    </script>
+    <script type="text/javascript">
+        if(typeof revslider_showDoubleJqueryError === "undefined") {
+         function revslider_showDoubleJqueryError(sliderID) {
+         var err = "<div class='rs_error_message_box'>";
+         err += "<div class='rs_error_message_oops'>Oops...</div>";
+         err += "<div class='rs_error_message_content'>";
+         err += "You have some jquery.js library include that comes after the Slider Revolution files js inclusion.<br>";
+         err += "To fix this, you can:<br>&nbsp;&nbsp;&nbsp; 1. Set 'Module General Options' -> 'Advanced' -> 'jQuery & OutPut Filters' -> 'Put JS to Body' to on";
+         err += "<br>&nbsp;&nbsp;&nbsp; 2. Find the double jQuery.js inclusion and remove it";
+         err += "</div>";
+         err += "</div>";
+         var slider = document.getElementById(sliderID); slider.innerHTML = err; slider.style.display = "block";
+         }
+         }
+    </script>
+    <link rel='stylesheet' id='inline-style-css' href='https://demo.casethemes.net/archio/wp-content/themes/archio/assets/css/inline-style.css?ver=6.8.3' type='text/css' media='all' />
+    <style id='inline-style-inline-css' type='text/css'>
+        @media screen and (min-width: 1200px) {
+         #ct-space-68df7dea09160 .ct-space {
+         height: 139px;
+         }
+         }
+         @media (min-width: 992px) and (max-width: 1991px) {
+         #ct-space-68df7dea09160 .ct-space {
+         height: 139px;
+         }
+         }
+         @media screen and (max-width: 767px) {
+         #ct-space-68df7dea09160 .ct-space {
+         height: 65px;
+         }
+         } 
+         @media (min-width: 991px) and (max-width: 1200px) {
+         #ct-heading .ct-heading-tag {
+         font-size: 40px !important;
+         line-height: 50px !important;
+         }
+         } 
+         @media (min-width: 768px) and (max-width: 991px) {
+         #ct-heading .ct-heading-tag {
+         font-size: 36px !important;
+         line-height: 45px !important;
+         }
+         } 
+         @media screen and (max-width: 767px) {
+         #ct-heading .ct-heading-tag {
+         font-size: 30px !important;
+         line-height: 38px !important;
+         }
+         } 
+         @media (min-width: 991px) and (max-width: 1200px) {
+         #ct-heading-2 .ct-heading-tag {
+         font-size: 24px !important;
+         line-height: 30px !important;
+         }
+         } 
+         @media (min-width: 768px) and (max-width: 991px) {
+         #ct-heading-2 .ct-heading-tag {
+         font-size: 24px !important;
+         line-height: 30px !important;
+         }
+         } 
+         @media screen and (max-width: 767px) {
+         #ct-heading-2 .ct-heading-tag {
+         font-size: 24px !important;
+         line-height: 30px !important;
+         }
+         } 
+         @media screen and (min-width: 1200px) {
+         #ct-space-68df7dea0dba5 .ct-space {
+         height: 40px;
+         }
+         }
+         @media (min-width: 992px) and (max-width: 1991px) {
+         #ct-space-68df7dea0dba5 .ct-space {
+         height: 40px;
+         }
+         }
+         @media screen and (max-width: 767px) {
+         #ct-space-68df7dea0dba5 .ct-space {
+         height: 65px;
+         }
+         } 
+         @media screen and (min-width: 1200px) {
+         #ct-space-68df7dea0ef1a .ct-space {
+         height: 66px;
+         }
+         }
+         @media (min-width: 992px) and (max-width: 1991px) {
+         #ct-space-68df7dea0ef1a .ct-space {
+         height: 66px;
+         }
+         }
+         @media (min-width: 768px) and (max-width: 991px) {
+         #ct-space-68df7dea0ef1a .ct-space {
+         height: 66px;
+         }
+         } 
+         @media screen and (min-width: 1200px) {
+         #ct-space-68df7dea0f7ee .ct-space {
+         height: 76px;
+         }
+         }
+         @media (min-width: 992px) and (max-width: 1991px) {
+         #ct-space-68df7dea0f7ee .ct-space {
+         height: 76px;
+         }
+         } 
+         @media screen and (min-width: 1200px) {
+         #ct-space-68df7dea0fe74 .ct-space {
+         height: 76px;
+         }
+         }
+         @media (min-width: 992px) and (max-width: 1991px) {
+         #ct-space-68df7dea0fe74 .ct-space {
+         height: 76px;
+         }
+         } 
+         @media screen and (max-width: 767px) {
+         #ct-space-68df7dea10198 .ct-space {
+         height: 40px;
+         }
+         } 
+         @media screen and (min-width: 1200px) {
+         #ct-space-68df7dea10a3b .ct-space {
+         height: 62px;
+         }
+         }
+         @media (min-width: 992px) and (max-width: 1991px) {
+         #ct-space-68df7dea10a3b .ct-space {
+         height: 62px;
+         }
+         }
+         @media (min-width: 768px) and (max-width: 991px) {
+         #ct-space-68df7dea10a3b .ct-space {
+         height: 62px;
+         }
+         } 
+         @media screen and (max-width: 767px) {
+         #ct-space-68df7dea1107a .ct-space {
+         height: 60px;
+         }
+         } 
+         @media (min-width: 991px) and (max-width: 1200px) {
+         #ct-heading-3 .ct-heading-tag {
+         font-size: 40px !important;
+         line-height: 50px !important;
+         }
+         } 
+         @media (min-width: 768px) and (max-width: 991px) {
+         #ct-heading-3 .ct-heading-tag {
+         font-size: 36px !important;
+         line-height: 45px !important;
+         }
+         } 
+         @media screen and (max-width: 767px) {
+         #ct-heading-3 .ct-heading-tag {
+         font-size: 30px !important;
+         line-height: 38px !important;
+         }
+         } 
+         @media screen and (min-width: 1200px) {
+         #ct-space-68df7dea11402 .ct-space {
+         height: 132px;
+         }
+         }
+         @media (min-width: 992px) and (max-width: 1991px) {
+         #ct-space-68df7dea11402 .ct-space {
+         height: 132px;
+         }
+         }
+         @media (min-width: 768px) and (max-width: 991px) {
+         #ct-space-68df7dea11402 .ct-space {
+         height: 132px;
+         }
+         }
+         @media screen and (max-width: 767px) {
+         #ct-space-68df7dea11402 .ct-space {
+         height: 65px;
+         }
+         } 
+         @media (min-width: 991px) and (max-width: 1200px) {
+         #ct-heading-4 .ct-heading-tag {
+         font-size: 40px !important;
+         line-height: 50px !important;
+         }
+         } 
+         @media (min-width: 768px) and (max-width: 991px) {
+         #ct-heading-4 .ct-heading-tag {
+         font-size: 36px !important;
+         line-height: 45px !important;
+         }
+         } 
+         @media screen and (max-width: 767px) {
+         #ct-heading-4 .ct-heading-tag {
+         font-size: 30px !important;
+         line-height: 38px !important;
+         }
+         }
+    </style>
+    <link rel='stylesheet' id='vc_animate-css-css' href='https://demo.casethemes.net/archio/wp-content/plugins/js_composer/assets/lib/bower/animate-css/animate.min.css?ver=6.8.0' type='text/css' media='all' />
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0" id="wp-polyfill-js"></script>
+    <script type="text/javascript" id="contact-form-7-js-extra">
+        /* <![CDATA[ */
+        var wpcf7 = {"api":{"root":"https:\/\/demo.casethemes.net\/archio\/wp-json\/","namespace":"contact-form-7\/v1"}};
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/uploads/siteground-optimizer-assets/contact-form-7.min.js?ver=5.5.6" id="contact-form-7-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/uploads/siteground-optimizer-assets/ct-front-js.min.js?ver=all" id="ct-front-js-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js?ver=2.1.4-wc.6.3.1" id="js-cookie-js"></script>
+    <script type="text/javascript" id="woocommerce-js-extra">
+        /* <![CDATA[ */
+        var woocommerce_params = {"ajax_url":"\/archio\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/archio\/?wc-ajax=%%endpoint%%"};
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js?ver=6.3.1" id="woocommerce-js"></script>
+    <script type="text/javascript" id="wc-cart-fragments-js-extra">
+        /* <![CDATA[ */
+        var wc_cart_fragments_params = {"ajax_url":"\/archio\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/archio\/?wc-ajax=%%endpoint%%","cart_hash_key":"wc_cart_hash_f4e0e40a2e956ca6cd1fafcb4d679fa8","fragment_name":"wc_fragments_f4e0e40a2e956ca6cd1fafcb4d679fa8","request_timeout":"5000"};
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.min.js?ver=6.3.1" id="wc-cart-fragments-js"></script>
+    <script type="text/javascript" id="ppress-frontend-script-js-extra">
+        /* <![CDATA[ */
+        var pp_ajax_form = {"ajaxurl":"https:\/\/demo.casethemes.net\/archio\/wp-admin\/admin-ajax.php","confirm_delete":"Are you sure?","deleting_text":"Deleting...","deleting_error":"An error occurred. Please try again.","nonce":"7e3125d085","disable_ajax_form":"false"};
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/plugins/wp-user-avatar/assets/js/frontend.min.js?ver=3.2.9" id="ppress-frontend-script-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/themes/archio/assets/js/bootstrap.min.js?ver=4.0.0" id="bootstrap-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/themes/archio/assets/js/nice-select.min.js?ver=all" id="nice-select-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/uploads/siteground-optimizer-assets/enscroll.min.js?ver=all" id="enscroll-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/uploads/siteground-optimizer-assets/match-height.min.js?ver=1.0.0" id="match-height-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/uploads/siteground-optimizer-assets/archio-sidebar-fixed.min.js?ver=1.0.0" id="archio-sidebar-fixed-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/themes/archio/assets/js/magnific-popup.min.js?ver=1.0.0" id="magnific-popup-js"></script>
+    <script type="text/javascript" id="archio-main-js-extra">
+        /* <![CDATA[ */
+        var main_data = {"ajax_url":"https:\/\/demo.casethemes.net\/archio\/wp-admin\/admin-ajax.php"};
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/uploads/siteground-optimizer-assets/archio-main.min.js?ver=1.1.1" id="archio-main-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/plugins/js_composer/assets/js/dist/js_composer_front.min.js?ver=6.8.0" id="wpb_composer_front_js-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/plugins/ctcore/assets/js/waypoints.min.js?ver=6.8.3" id="waypoints-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/plugins/js_composer/assets/lib/vc_waypoints/vc-waypoints.min.js?ver=6.8.0" id="vc_waypoints-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/plugins/ctcore/assets/js/owl.carousel.min.js?ver=6.8.3" id="owl-carousel-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/themes/archio/assets/js/ct-carousel.js?ver=1.1.1" id="archio-carousel-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/plugins/js_composer/assets/lib/bower/skrollr/dist/skrollr.min.js?ver=6.8.0" id="vc_jquery_skrollr_js-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/themes/archio/assets/js/counter.min.js?ver=1.1.1" id="archio-counter-lib-js"></script>
+    <script type="text/javascript" src="https://demo.casethemes.net/archio/wp-content/themes/archio/assets/js/ct-counter.js?ver=1.1.1" id="archio-counter-js"></script>
+</body>
+
+</html>
